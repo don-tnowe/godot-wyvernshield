@@ -76,9 +76,10 @@ func _set_health_percent(v):
 func _set_stats(v):
 	if is_instance_valid(stats):
 		stats.disconnect("changed", self, "_on_stats_changed")
-
+	
 	stats = v
-
+	# Duplicate the array - if it's not, new sheets will be added to the same array which all enemies share
+	stats.subsheets = stats.subsheets.duplicate()
 	stats.recalculate_recursively()
 	if stats.connect("changed", self, "_on_stats_changed") != OK:
 		printerr("Error! Could not connect StatSheet::changed (_set_stats in combat_actor.gd)")

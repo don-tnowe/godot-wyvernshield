@@ -24,6 +24,7 @@ resource_name = "HeroStats"
 script = ExtResource( 7 )
 stats_as_text = ""
 subsheets = [ ExtResource( 12 ), ExtResource( 14 ) ]
+all_multiplier = 1.0
 
 [sub_resource type="Resource" id=24]
 resource_name = "Damage Numbers DOT"

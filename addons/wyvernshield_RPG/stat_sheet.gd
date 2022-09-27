@@ -3,13 +3,11 @@ class_name StatSheet
 extends Resource
 
 export(String, MULTILINE) var stats_as_text setget _set_stats_as_text
-
 export(Array, Resource) var subsheets
+export var all_multiplier := 1.0
 
 var stats_add := {}
 var stats_multi := {}
-var all_multiplier := 1.0
-var supersheet : StatSheet
 
 
 func _set_stats_as_text(v):
@@ -50,7 +48,6 @@ func add_subsheet(subsheet : StatSheet, with_multiplier : float = 1.0) -> Resour
 	subsheets.append(subsheet)
 	subsheet.recalculate_recursively()
 	
-	subsheet.supersheet = self
 	if subsheet.connect("changed", self, "_on_child_changed") != OK:
 		printerr("Error connecting signal StatSheet::recalculate_children! (add_subsheet in stat_sheet.gd)")
 	
@@ -114,8 +111,10 @@ func recalculate_child(child : StatSheet):
 
 func duplicate_recursively() -> Resource:
 	var me_duplicated := duplicate()
+	me_duplicated.subsheets = subsheets.duplicate()
 	for i in me_duplicated.subsheets.size():
-		me_duplicated.subsheets[i] = me_duplicated.subsheets[i].duplicate_recursively()
+		me_duplicated.subsheets[i] = subsheets[i].duplicate_recursively()
+		me_duplicated.subsheets[i].connect("changed", me_duplicated, "_on_child_changed")
 	
 	me_duplicated.recalculate_children()
 	return me_duplicated

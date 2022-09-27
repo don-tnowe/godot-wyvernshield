@@ -22,6 +22,7 @@ resource_name = "Stats"
 script = ExtResource( 5 )
 stats_as_text = ""
 subsheets = [ ExtResource( 6 ) ]
+all_multiplier = 1.0
 
 [sub_resource type="CylinderShape" id=2]
 height = 0.8
@@ -89,7 +90,6 @@ script = ExtResource( 2 )
 [node name="CombatActor" type="Spatial" parent="."]
 script = ExtResource( 9 )
 stats = SubResource( 17 )
-status_path = NodePath("StatusCarrier")
 initial_trigger_reactions = [ ExtResource( 4 ), ExtResource( 10 ), ExtResource( 3 ) ]
 
 [node name="StatusCarrier" type="Node" parent="CombatActor"]
