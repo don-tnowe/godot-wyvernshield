@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=2]
+[ext_resource path="res://assets/wyvernshield/scenes/life_orb.tscn" type="PackedScene" id=3]
+
+[resource]
+resource_name = "Life Orb On Kill"
+script = ExtResource( 1 )
+trigger = 9
+priority = 1000
+reaction_class = ExtResource( 2 )
+reaction_func = "spawn_on_kill"
+allow_duplicates = true
+editor_extra = "Extra Vars:
+0 - Scene to spawn
+1 - Chance to spawn collectible (1.0 = always spawns)"
+extra_vars = [ ExtResource( 3 ), 0.5 ]

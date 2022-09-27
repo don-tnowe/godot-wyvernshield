@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/wyvernshield/attacks/firebomb.tres" type="Resource" id=1]
+[ext_resource path="res://assets/wyvernshield/attacks/basic/melee.tres" type="Resource" id=2]
+[ext_resource path="res://assets/wyvernshield/attacks/frailty_shards.tres" type="Resource" id=3]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/hero_weapon.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 47.2765, 0.205295, 48.3724 )
+
+[sub_resource type="Gradient" id=11]
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 11 )
+width = 8
+fill_to = Vector2( 0, 1 )
+
+[node name="Weapon" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26676, 0 )
+script = ExtResource( 4 )
+basic_attack_power = ExtResource( 2 )
+special_powers = [ ExtResource( 3 ), ExtResource( 1 ) ]
+special_power_actions = [ "special_power_1", "special_power_2" ]
+
+[node name="Raycast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.291397, 0 )
+collision_mask = 0
+
+[node name="AimPlane" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.291397, 0 )
+collision_layer = 64
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape" parent="AimPlane"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11683, 0 )
+shape = SubResource( 23 )
+
+[node name="Dir" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.291397, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Dir"]
+transform = Transform( -4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 0, 0.042804, -2 )
+axis = 1
+texture = SubResource( 2 )
+
+[node name="Node" type="Node" parent="."]

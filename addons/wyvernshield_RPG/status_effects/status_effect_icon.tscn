@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/graphics/font/font_damage.tres" type="DynamicFont" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="Control" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -992.0
+margin_bottom = -552.0
+rect_min_size = Vector2( 32, 48 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color( 0.623529, 0.623529, 0.623529, 1 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -28.0
+margin_right = -16.0
+margin_bottom = -14.0
+rect_scale = Vector2( 2, 2.0041 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "1"
+align = 1
+valign = 2

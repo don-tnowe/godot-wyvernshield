@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/wyvernshield/attacks/firebomb.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.236712
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.643939, 0.776515, 0.916667, 0.94697, 1 )
+colors = PoolColorArray( 1, 0.796875, 0, 1, 1, 0.376471, 0, 1, 1, 0.431373, 0.0745098, 1, 1, 0.602876, 0.311111, 0.311111, 1, 0.423529, 0, 0 )
+
+[sub_resource type="GradientTexture2D" id=3]
+gradient = SubResource( 2 )
+fill = 1
+fill_from = Vector2( 0.509722, 0.481944 )
+fill_to = Vector2( 0.520833, 0 )
+
+[sub_resource type="CylinderShape" id=4]
+radius = 1.5
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ExplosionShape/Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ExplosionShape/Sprite3D:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ExplosionShape/Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 7, 7, 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ExplosionShape/Sprite3D:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0 ]
+}
+
+[node name="Projectile" type="Area"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource( 1 )
+initial_speed = 8.0
+lifetime = 8.0
+damage = 4.0
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+cast_to = Vector3( 0, -99, 0 )
+collision_mask = 16
+
+[node name="Shape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309424, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309424, 0 )
+billboard = 1
+texture = SubResource( 3 )
+
+[node name="ExplosionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.302013, 0 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="Sprite3D" type="Sprite3D" parent="ExplosionShape"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+axis = 1
+texture = SubResource( 3 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+anims/RESET = SubResource( 6 )
+anims/explode = SubResource( 5 )

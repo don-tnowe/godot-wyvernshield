@@ -1,0 +1,47 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/weapons/hero_special_projectile.tres" type="Resource" id=1]
+[ext_resource path="res://assets/wyvernshield/attacks/frailty_shards.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/attack.gd" type="Script" id=3]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=5]
+[ext_resource path="res://assets/wyvernshield/status_effects/frail.tres" type="Resource" id=6]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=7]
+
+[sub_resource type="Resource" id=6]
+resource_name = "Frail on Hit"
+script = ExtResource( 7 )
+trigger = 4
+priority = 1000
+reaction_class = ExtResource( 5 )
+reaction_func = "apply_status_on_hit"
+allow_duplicates = true
+editor_extra = "Extra Vars:
+0 - the effect
+1 - duration, in milliseconds
+2 - potency (strength of the effect)"
+extra_vars = [ ExtResource( 6 ), 5.0, 50.0 ]
+
+[sub_resource type="Resource" id=7]
+resource_name = "Split Projectiles"
+script = ExtResource( 7 )
+trigger = 1
+priority = 100
+reaction_class = ExtResource( 5 )
+reaction_func = "split_projectiles"
+allow_duplicates = true
+editor_extra = "Extra Vars:
+0 - Split count (if 2, projectiles are tripled)
+1 - Projectile spread, degrees"
+extra_vars = [ 2, 30.0 ]
+
+[resource]
+script = ExtResource( 3 )
+base_multiplier = 1.5
+energy_cost = 1.0
+energy_type = "magic"
+weapon_cooldown = 0.5
+all_specials_cooldown = 0.0
+spawn_scene = ExtResource( 2 )
+spawn_mode = 0
+trigger_reactions = [ ExtResource( 1 ), SubResource( 7 ) ]
+projectile_trigger_reactions = [ SubResource( 6 ) ]

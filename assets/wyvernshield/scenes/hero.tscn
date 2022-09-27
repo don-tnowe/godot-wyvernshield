@@ -1,0 +1,240 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://assets/wyvernshield/scenes/hero.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/hero_weapon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/weapons/hero_weapon_attack.tres" type="Resource" id=4]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=5]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=6]
+[ext_resource path="res://addons/wyvernshield_RPG/stat_sheet.gd" type="Script" id=7]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/defense.tres" type="Resource" id=8]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/vfx/damage_numbers_hero.tres" type="Resource" id=10]
+[ext_resource path="res://addons/wyvernshield_RPG/damage_numbers.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/wyvernshield/stat_sheets/default_hero.tres" type="Resource" id=12]
+[ext_resource path="res://addons/wyvernshield_RPG/hurtbox.gd" type="Script" id=13]
+[ext_resource path="res://assets/wyvernshield/stat_sheets/default_hero_weapon.tres" type="Resource" id=14]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_actor.gd" type="Script" id=15]
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier.gd" type="Script" id=16]
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier_view_2D.tscn" type="PackedScene" id=19]
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect_icon.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/life_orb_on_kill.tres" type="Resource" id=21]
+
+[sub_resource type="Resource" id=41]
+resource_name = "HeroStats"
+script = ExtResource( 7 )
+stats_as_text = ""
+subsheets = [ ExtResource( 12 ), ExtResource( 14 ) ]
+
+[sub_resource type="Resource" id=24]
+resource_name = "Damage Numbers DOT"
+script = ExtResource( 6 )
+trigger = 5
+priority = 0
+reaction_class = ExtResource( 5 )
+reaction_func = "damage_numbers"
+allow_duplicates = false
+editor_extra = "On hit, show the damage amount.
+Extra vars:
+0: the scene to instantiate
+1: random offset, meters
+2: random rotation, degrees
+3. color"
+extra_vars = [ ExtResource( 11 ), Vector3( 0, 0, 0 ), 0.0, Color( 0.721569, 0.721569, 0.721569, 1 ), 0 ]
+
+[sub_resource type="CylinderShape" id=16]
+height = 0.5
+radius = 0.2
+
+[sub_resource type="CylinderShape" id=1]
+height = 0.5
+radius = 0.33
+
+[sub_resource type="Gradient" id=28]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.917763, 1 )
+colors = PoolColorArray( 0, 0, 0, 0.658273, 0, 0, 0, 0.0568294, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture2D" id=29]
+gradient = SubResource( 28 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 0.5, 1 )
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0, 0.96129, 1 )
+colors = PoolColorArray( 1, 0, 0.181641, 1, 0.59668, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=32]
+gradient = SubResource( 26 )
+fill = 1
+fill_from = Vector2( 0.515278, 0.498611 )
+fill_to = Vector2( 0.5, 1 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 7
+atlas = SubResource( 32 )
+region = Rect2( 0, 0, 32, 64 )
+
+[sub_resource type="Gradient" id=37]
+offsets = PoolRealArray( 0.835766, 0.883212, 0.974453, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=38]
+gradient = SubResource( 37 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 0.5, 1 )
+
+[sub_resource type="Gradient" id=36]
+offsets = PoolRealArray( 0.00967742, 0.896774, 1 )
+colors = PoolColorArray( 0, 0.501953, 1, 1, 0.294922, 0, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=33]
+gradient = SubResource( 36 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 0.5, 1 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 7
+atlas = SubResource( 33 )
+region = Rect2( 32, 0, 64, 64 )
+margin = Rect2( 32, 0, 0, 0 )
+filter_clip = true
+
+[node name="Hero" type="KinematicBody"]
+collision_mask = 16
+script = ExtResource( 1 )
+
+[node name="CombatActor" type="Spatial" parent="."]
+script = ExtResource( 15 )
+stats = SubResource( 41 )
+energy_types = [ "magic" ]
+energy_amounts = [ 3.0 ]
+initial_trigger_reactions = [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), SubResource( 24 ), ExtResource( 21 ) ]
+
+[node name="StatusCarrier" type="Node" parent="CombatActor"]
+script = ExtResource( 16 )
+
+[node name="Hurtbox" type="Area" parent="CombatActor"]
+collision_layer = 0
+collision_mask = 130
+script = ExtResource( 13 )
+
+[node name="Shape" type="CollisionShape" parent="CombatActor/Hurtbox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+shape = SubResource( 16 )
+
+[node name="Weapon" parent="CombatActor" instance=ExtResource( 3 )]
+
+[node name="RegenTick" type="Timer" parent="CombatActor"]
+process_mode = 0
+wait_time = 0.25
+autostart = true
+__meta__ = {
+"_editor_description_": "Please note this timer calls CombatActor.regen_tick() with a bound argument equal to its wait_time."
+}
+
+[node name="Shape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+billboard = 1
+alpha_cut = 1
+texture = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.666532, 0.745476, 0, -0.745476, 0.666532, 0, 3.45, 3 )
+current = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="ResourceBars" type="Control" parent="HUD/Control"]
+margin_left = -7.0
+margin_top = -66.0
+margin_right = -7.0
+margin_bottom = -66.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Life" type="TextureProgress" parent="HUD/Control/ResourceBars"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+max_value = 102.25
+step = 0.0
+value = 55.3
+texture_under = SubResource( 29 )
+texture_progress = SubResource( 30 )
+fill_mode = 3
+
+[node name="Magic" type="TextureProgress" parent="HUD/Control/ResourceBars"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+step = 0.0
+value = 69.45
+texture_over = SubResource( 38 )
+texture_progress = SubResource( 31 )
+fill_mode = 3
+
+[node name="StatusEffects" type="MarginContainer" parent="HUD/Control"]
+margin_left = -42.0
+margin_top = -164.0
+margin_right = 26.0
+margin_bottom = -116.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="ForReference" type="HBoxContainer" parent="HUD/Control/StatusEffects"]
+visible = false
+margin_right = 68.0
+margin_bottom = 48.0
+alignment = 1
+
+[node name="ForReference" parent="HUD/Control/StatusEffects/ForReference" instance=ExtResource( 20 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 32.0
+margin_bottom = 48.0
+
+[node name="ForReference2" parent="HUD/Control/StatusEffects/ForReference" instance=ExtResource( 20 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 48.0
+
+[node name="StatusView" parent="HUD/Control/StatusEffects" instance=ExtResource( 19 )]
+margin_right = 68.0
+margin_bottom = 48.0
+icon_scene = ExtResource( 20 )
+
+[connection signal="energy_changed" from="CombatActor" to="." method="_on_combat_energy_changed"]
+[connection signal="health_changed" from="CombatActor" to="." method="_on_combat_health_changed"]
+[connection signal="health_depleted" from="CombatActor" to="." method="_on_combat_health_depleted"]
+[connection signal="stats_changed" from="CombatActor" to="." method="_on_combat_stats_changed"]
+[connection signal="status_effect_applied" from="CombatActor/StatusCarrier" to="HUD/Control/StatusEffects/StatusView" method="_on_status_effect_applied"]
+[connection signal="status_effect_removed" from="CombatActor/StatusCarrier" to="HUD/Control/StatusEffects/StatusView" method="_on_status_effect_removed"]
+[connection signal="body_entered" from="CombatActor/Hurtbox" to="." method="_on_Hurtbox_body_entered"]
+[connection signal="attacking_state_changed" from="CombatActor/Weapon" to="." method="_on_Weapon_attacking_state_changed"]
+[connection signal="timeout" from="CombatActor/RegenTick" to="CombatActor" method="regen_tick" binds= [ 0.25 ]]

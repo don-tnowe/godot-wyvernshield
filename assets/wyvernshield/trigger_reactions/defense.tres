@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/defense_calculation.gd" type="Script" id=2]
+
+[resource]
+resource_name = "Defense"
+script = ExtResource( 1 )
+trigger = 4
+priority = 1000
+reaction_class = ExtResource( 2 )
+reaction_func = "defense_c"
+allow_duplicates = true
+editor_extra = "On hit, use the Defense stat to mitigate damage.
+Possible reaction_func values for this:
+- defense_a (atk - def with deminishing returns after 50% blocked)
+- defense_b (atk * atk / (atk + def))
+- defense_c (atk * (100 / (100 + def)))
+- defense_d (max(atk - def, 1))
+Check out defense_calculations.gd for their implementations."
+extra_vars = [  ]

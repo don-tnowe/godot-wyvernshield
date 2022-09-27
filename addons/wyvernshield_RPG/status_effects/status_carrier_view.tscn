@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier_view.gd" type="Script" id=1]
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect_icon.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ViewportTexture" id=22]
+viewport_path = NodePath("Viewport")
+
+[node name="StatusView" type="Spatial"]
+script = ExtResource( 1 )
+icon_scene = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 2, 2 )
+size_override_stretch = true
+transparent_bg = true
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+gui_disable_input = true
+
+[node name="Status" type="HBoxContainer" parent="Viewport"]
+custom_constants/separation = 4
+
+[node name="Sprite" type="Sprite3D" parent="."]
+cast_shadow = 0
+generate_lightmap = false
+billboard = 1
+texture = SubResource( 22 )
+region_rect = Rect2( 2.85, 0, 96.8, 55 )

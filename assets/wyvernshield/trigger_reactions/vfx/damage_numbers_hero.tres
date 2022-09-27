@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/damage_numbers.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=2]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=3]
+
+[resource]
+resource_name = "Damage Numbers Player"
+script = ExtResource( 2 )
+trigger = 4
+priority = 0
+reaction_class = ExtResource( 3 )
+reaction_func = "damage_numbers"
+allow_duplicates = true
+editor_extra = "On hit, show the damage amount.
+Extra vars:
+0: the scene to instantiate
+1: random offset, meters
+2: random rotation, degrees
+3. color"
+extra_vars = [ ExtResource( 1 ), Vector3( 0, 0, 0 ), 0.0, Color( 0.933333, 0.262745, 0.262745, 1 ) ]

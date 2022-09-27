@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=2]
+[ext_resource path="res://assets/wyvernshield/status_effects/burn.tres" type="Resource" id=3]
+
+[resource]
+resource_name = "Burn on Cast (why)"
+script = ExtResource( 1 )
+trigger = 1
+priority = 1000
+reaction_class = ExtResource( 2 )
+reaction_func = "apply_status_on_cast"
+allow_duplicates = true
+editor_extra = "DON'T FORGET TO Right-click -> Make Unique!
+
+Extra Vars:
+0 - the effect
+1 - duration, in seconds
+2 - potency (strength of the effect, multiplier)
+3 - stat that potency scales off of."
+extra_vars = [ ExtResource( 3 ), 5.0, 1.0 ]

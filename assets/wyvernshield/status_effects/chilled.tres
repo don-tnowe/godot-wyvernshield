@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/status_effects/_function_sheets/basic_status.gd" type="Script" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/stat_sheet.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.00322581, 1 )
+colors = PoolColorArray( 0.0537109, 0.373453, 1, 1, 0.78418, 1, 0.975973, 1 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 3 )
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0.998611, 0.00416667 )
+
+[sub_resource type="Resource" id=5]
+resource_name = "Reduce Move Speed"
+script = ExtResource( 3 )
+stats_as_text = "move_speed * 0.99"
+subsheets = [  ]
+
+[resource]
+script = ExtResource( 1 )
+does_not_stack_with_id = "chilled"
+function_class = ExtResource( 2 )
+function_on_applied = ""
+function_on_expired = ""
+function_on_stacked = "stack_reset_duration"
+icon = SubResource( 4 )
+trigger_reactions_to_add = [  ]
+stat_sheets_to_add = [ SubResource( 5 ) ]
+extra_vars = [  ]

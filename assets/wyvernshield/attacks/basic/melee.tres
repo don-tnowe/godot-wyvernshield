@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/weapons/hero_special_projectile.tres" type="Resource" id=1]
+[ext_resource path="res://assets/wyvernshield/attacks/basic/melee.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/attack.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 3 )
+base_multiplier = 2.0
+energy_cost = 0.0
+energy_type = "magic"
+weapon_cooldown = 0.5
+all_specials_cooldown = 0.0
+spawn_scene = ExtResource( 2 )
+spawn_mode = 1
+trigger_reactions = [ ExtResource( 1 ) ]
+projectile_trigger_reactions = [  ]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=2]
+
+[resource]
+resource_name = "Special Power Shot"
+script = ExtResource( 1 )
+trigger = 1
+priority = 1000
+reaction_class = ExtResource( 2 )
+reaction_func = "hero_special_attack"
+allow_duplicates = true
+editor_extra = ""
+extra_vars = [  ]

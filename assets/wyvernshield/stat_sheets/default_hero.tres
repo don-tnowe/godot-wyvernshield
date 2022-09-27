@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/stat_sheet.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+stats_as_text = "health + 80.0
+health_regen + 4.0
+magic + 6.0
+magic_regen + 0.5
+
+defense + 64.0
+weapon_damage + 24.0
+special_damage + 24.0
+
+move_speed + 4.0"
+subsheets = [  ]

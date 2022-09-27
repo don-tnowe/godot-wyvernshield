@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/stat_sheet.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+stats_as_text = "weapon_speed + 3.0
+weapon_shot_speed + 0.2
+weapon_shot_lifetime + 0.29
+weapon_pierce_count + -1"
+subsheets = [  ]

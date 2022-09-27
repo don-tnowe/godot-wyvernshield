@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier_view_2D.gd" type="Script" id=1]
+
+[node name="StatusView" type="HBoxContainer"]
+custom_constants/separation = 4
+alignment = 1
+script = ExtResource( 1 )

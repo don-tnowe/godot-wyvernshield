@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/damage_area.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.529148, 0.775785, 0.780269 )
+colors = PoolColorArray( 0.714714, 0.401367, 1, 1, 0.0246447, 0.0075531, 0.078125, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 5 )
+fill = 1
+fill_from = Vector2( 0.509722, 0.481944 )
+fill_to = Vector2( 0.520833, 0 )
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.25
+
+[node name="Projectile" type="Area"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource( 1 )
+initial_speed = 12.0
+pierce_count = 1
+lifetime = 5.0
+damage = 4.0
+
+[node name="Sprite" type="Sprite3D" parent="."]
+axis = 1
+texture = SubResource( 4 )
+
+[node name="Shape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )

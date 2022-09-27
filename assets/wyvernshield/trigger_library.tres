@@ -1,0 +1,105 @@
+[gd_resource type="Resource" load_steps=16 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_static.gd" type="Script" id=1]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_properties.gd" type="Script" id=4]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_library.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=1]
+resource_name = "tick"
+script = ExtResource( 4 )
+trigger_name = "tick"
+prop_names = "DELTA_TIME"
+
+[sub_resource type="Resource" id=3]
+resource_name = "attack"
+script = ExtResource( 4 )
+trigger_name = "attack"
+prop_names = "ACTOR
+SPAWNED_OBJECTS
+DIRECTION_VEC
+ATTACK
+WEAPON_COOLDOWN
+POWER_COOLDOWN
+IS_BASIC_ATTACK"
+
+[sub_resource type="Resource" id=19]
+resource_name = "attack_get_cost"
+script = ExtResource( 4 )
+trigger_name = "attack_get_cost"
+prop_names = "ACTOR
+ATTACK
+CAN_CAST
+COST_DICT"
+
+[sub_resource type="Resource" id=5]
+resource_name = "hit_landed"
+script = ExtResource( 4 )
+trigger_name = "hit_landed"
+prop_names = "TARGET
+HIT_BY_ATTACK
+DAMAGE_DEALT"
+
+[sub_resource type="Resource" id=6]
+resource_name = "hit_received"
+script = ExtResource( 4 )
+trigger_name = "hit_received"
+prop_names = "TARGET
+HIT_BY_ACTOR
+HIT_BY_ATTACK
+DAMAGE_DEALT"
+
+[sub_resource type="Resource" id=7]
+resource_name = "status_dot_tick"
+script = ExtResource( 4 )
+trigger_name = "status_dot_tick"
+prop_names = "DAMAGE_DEALT"
+
+[sub_resource type="Resource" id=8]
+resource_name = "status_get_properties"
+script = ExtResource( 4 )
+trigger_name = "status_get_properties"
+prop_names = "SENDER
+STATUS
+TARGET
+RESULT_DURATION
+RESULT_POTENCY"
+
+[sub_resource type="Resource" id=9]
+resource_name = "status_applied"
+script = ExtResource( 4 )
+trigger_name = "status_applied"
+prop_names = "ACTOR
+STATUS
+TARGET
+RESULT_DURATION
+RESULT_POTENCY"
+
+[sub_resource type="Resource" id=10]
+resource_name = "status_received"
+script = ExtResource( 4 )
+trigger_name = "status_received"
+prop_names = "SENDER
+STATUS
+TARGET"
+
+[sub_resource type="Resource" id=11]
+resource_name = "npc_defeated"
+script = ExtResource( 4 )
+trigger_name = "npc_defeated"
+prop_names = "TARGET
+FINISHING_ATTACK
+DAMAGE_DEALT"
+
+[sub_resource type="Resource" id=20]
+resource_name = "item_pickup"
+script = ExtResource( 4 )
+trigger_name = "item_pickup"
+prop_names = "ITEM"
+
+[resource]
+script = ExtResource( 5 )
+list = [ SubResource( 1 ), SubResource( 3 ), SubResource( 19 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 20 ) ]
+force_update = false
+reaction_class = ExtResource( 2 )
+static_class = ExtResource( 1 )

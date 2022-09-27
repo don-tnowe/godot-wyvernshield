@@ -1,0 +1,46 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect.gd" type="Script" id=1]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=2]
+[ext_resource path="res://assets/wyvernshield/status_effects/_function_sheets/basic_status.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 0.802734, 0, 1, 1, 0.204779, 0.0419922, 1 )
+
+[sub_resource type="GradientTexture2D" id=3]
+gradient = SubResource( 4 )
+fill_from = Vector2( 0, 1 )
+
+[sub_resource type="Resource" id=5]
+resource_name = "Burn DOT Tick"
+script = ExtResource( 2 )
+trigger = 5
+priority = 100
+reaction_class = ExtResource( 3 )
+reaction_func = "burn_tick"
+allow_duplicates = true
+editor_extra = ""
+extra_vars = [  ]
+
+[sub_resource type="Resource" id=6]
+resource_name = "Burn Hit"
+script = ExtResource( 2 )
+trigger = 4
+priority = 100
+reaction_class = ExtResource( 3 )
+reaction_func = "burn_hit"
+allow_duplicates = true
+editor_extra = ""
+extra_vars = [  ]
+
+[resource]
+script = ExtResource( 1 )
+does_not_stack_with_id = "burn"
+function_class = ExtResource( 3 )
+function_on_applied = ""
+function_on_expired = ""
+function_on_stacked = "stack_reset_duration"
+icon = SubResource( 3 )
+trigger_reactions_to_add = [ SubResource( 5 ), SubResource( 6 ) ]
+stat_sheets_to_add = [  ]
+extra_vars = [  ]

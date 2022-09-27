@@ -1,0 +1,35 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/weapons/hero_special_projectile.tres" type="Resource" id=1]
+[ext_resource path="res://assets/wyvernshield/attacks/firebomb.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/attack.gd" type="Script" id=3]
+[ext_resource path="res://assets/wyvernshield/status_effects/burn.tres" type="Resource" id=4]
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=5]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=7]
+resource_name = "Burn on Hit"
+script = ExtResource( 5 )
+trigger = 3
+priority = 1000
+reaction_class = ExtResource( 6 )
+reaction_func = "apply_status_on_hit"
+allow_duplicates = true
+editor_extra = "Extra Vars:
+0 - the effect
+1 - duration, in milliseconds
+2 - potency (strength of the effect)
+3 - the stat it scales off of"
+extra_vars = [ ExtResource( 4 ), 10.0, 0.25, "special_damage" ]
+
+[resource]
+script = ExtResource( 3 )
+base_multiplier = 2.0
+energy_cost = 2.0
+energy_type = "magic"
+weapon_cooldown = 0.5
+all_specials_cooldown = 0.0
+spawn_scene = ExtResource( 2 )
+spawn_mode = 0
+trigger_reactions = [ ExtResource( 1 ) ]
+projectile_trigger_reactions = [ SubResource( 7 ) ]
