@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/wyvernshield/scenes/hero.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=6]
 [ext_resource path="res://addons/wyvernshield_RPG/stat_sheet.gd" type="Script" id=7]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/defense.tres" type="Resource" id=8]
+[ext_resource path="res://assets/wyvernshield/combat_moves/firebomb.tres" type="Resource" id=9]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/vfx/damage_numbers_hero.tres" type="Resource" id=10]
 [ext_resource path="res://addons/wyvernshield_RPG/damage_numbers.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/wyvernshield/stat_sheets/default_hero.tres" type="Resource" id=12]
@@ -15,6 +16,8 @@
 [ext_resource path="res://assets/wyvernshield/stat_sheets/default_hero_weapon.tres" type="Resource" id=14]
 [ext_resource path="res://addons/wyvernshield_RPG/combat_actor.gd" type="Script" id=15]
 [ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier.gd" type="Script" id=16]
+[ext_resource path="res://assets/wyvernshield/combat_moves/frailty_shards.tres" type="Resource" id=17]
+[ext_resource path="res://assets/wyvernshield/combat_moves/heal.tres" type="Resource" id=18]
 [ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier_view_2D.tscn" type="PackedScene" id=19]
 [ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect_icon.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/life_orb_on_kill.tres" type="Resource" id=21]
@@ -127,6 +130,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 shape = SubResource( 16 )
 
 [node name="Weapon" parent="CombatActor" instance=ExtResource( 3 )]
+special_powers = [ ExtResource( 17 ), ExtResource( 9 ), ExtResource( 18 ) ]
+special_power_actions = [ "special_power_1", "special_power_2", "special_power_3" ]
 
 [node name="RegenTick" type="Timer" parent="CombatActor"]
 process_mode = 0
@@ -234,6 +239,8 @@ icon_scene = ExtResource( 20 )
 [connection signal="health_changed" from="CombatActor" to="." method="_on_combat_health_changed"]
 [connection signal="health_depleted" from="CombatActor" to="." method="_on_combat_health_depleted"]
 [connection signal="stats_changed" from="CombatActor" to="." method="_on_combat_stats_changed"]
+[connection signal="status_effect_applied" from="CombatActor/StatusCarrier" to="HUD/Control/StatusEffects/StatusView" method="_on_status_effect_applied"]
+[connection signal="status_effect_removed" from="CombatActor/StatusCarrier" to="HUD/Control/StatusEffects/StatusView" method="_on_status_effect_removed"]
 [connection signal="body_entered" from="CombatActor/Hurtbox" to="." method="_on_Hurtbox_body_entered"]
 [connection signal="attacking_state_changed" from="CombatActor/Weapon" to="." method="_on_Weapon_attacking_state_changed"]
 [connection signal="timeout" from="CombatActor/RegenTick" to="CombatActor" method="regen_tick" binds= [ 0.25 ]]

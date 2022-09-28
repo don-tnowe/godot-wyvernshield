@@ -11,10 +11,8 @@ var stats_multi := {}
 
 
 func _set_stats_as_text(v):
-	stats_add.clear()
-	stats_multi.clear()
-	load_from_text(v)
 	stats_as_text = v
+	recalculate_children()
 
 
 func _on_child_changed():

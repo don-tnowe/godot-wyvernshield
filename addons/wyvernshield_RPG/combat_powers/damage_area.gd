@@ -12,6 +12,7 @@ export var is_spectral := false
 export var lifetime : float = 0.5 setget _set_lifetime
 export var damage : float
 export(Array, Resource) var hit_trigger_reactions
+export(String, MULTILINE) var hit_stat_changes
 
 var velocity := Vector3.ZERO
 var sender : Spatial
@@ -57,6 +58,9 @@ func destroy():
 
 func hit_target(target):
 	var result = target.combat_actor.hit(sender, self, damage, hit_trigger_reactions)
+	if hit_stat_changes != "":
+		target.combat_actor.apply_stat_change_status_effect(hit_stat_changes, sender, filename)
+
 	emit_signal("hit_target", result)
 
 	if !target.alive:

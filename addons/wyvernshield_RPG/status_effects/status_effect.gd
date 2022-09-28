@@ -33,7 +33,7 @@ func _set_duration(v):
 
 
 func _get_duration():
-	return expiration_time_sec - carrier.time
+	return expiration_time_sec - carrier.time if carrier != null else 0
 
 
 func _set_function_class(v):

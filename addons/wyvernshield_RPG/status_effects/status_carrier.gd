@@ -45,6 +45,32 @@ func apply_effect(effect : StatusEffect, duration_sec : float, potency = null, s
 	emit_signal("status_effect_applied", effect, insert_effect_into_list(effect))
 
 
+func apply_stat_change(stats_and_times : String, sender, does_not_stack_with_id : String = ""):
+	var snt_split := stats_and_times.split("\n", false)
+	var sheet_time := 1.0
+	var sheet_text := ""
+	for i in snt_split.size():
+		if snt_split[i].ends_with("s:"):
+			sheet_time = float(snt_split[i].left(snt_split[i].length() - 2))
+			if sheet_text != "":
+				_apply_effect_from_text(sheet_text, sheet_time, sender, does_not_stack_with_id + str(i))
+				sheet_text = ""
+
+		else:
+			sheet_text += snt_split[i]
+			
+	_apply_effect_from_text(sheet_text, sheet_time, sender, does_not_stack_with_id)
+
+
+func _apply_effect_from_text(sheet_text : String, time_sec : float, sender, does_not_stack_with_id : String = ""):
+	var sheet := StatSheet.new()
+	sheet.stats_as_text = sheet_text
+	var effect := StatusEffect.new()
+	effect.does_not_stack_with_id = does_not_stack_with_id
+	effect.stat_sheets_to_add = [sheet]
+	apply_effect(effect, time_sec, 1.0, sender)
+
+
 func pop_effect():
 	var f = list.pop_front()
 	f.remove()

@@ -8,10 +8,10 @@ export var weapon_cooldown : float
 export var all_specials_cooldown : float
 export var spawn_scene : PackedScene
 export(int, "Root Node", "Child Local Coords") var spawn_mode := 0
-export(Array, Resource) var trigger_reactions : Array setget _set_trigger_reactions
-export(Array, Resource) var projectile_trigger_reactions : Array
 export(String, MULTILINE) var stats_on_use := ""
 export(String, MULTILINE) var stats_on_hit := ""
+export(Array, Resource) var trigger_reactions : Array setget _set_trigger_reactions
+export(Array, Resource) var projectile_trigger_reactions : Array
 
 var trigger_sheet : TriggerSheet
 
@@ -41,12 +41,16 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 			return []
 
 		actor.subtract_energy(k, cost_dict[k])
+	
+	if stats_on_use != "":
+		actor.apply_stat_change_status_effect(stats_on_use, actor, resource_path)
 
 	var spawned_node : Node
 	if spawn_scene != null:
 		spawned_node = spawn_scene.instance()
 		spawned_node.damage = base_multiplier
 		spawned_node.sender = actor
+		spawned_node.hit_stat_changes = stats_on_hit
 		spawned_node.hit_trigger_reactions.append_array(projectile_trigger_reactions)
 
 	var result := TriggerStatic.combat_move(
@@ -74,5 +78,5 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 		
 		else:
 			origin_node.add_child(x)
-
+	
 	return result

@@ -106,6 +106,11 @@ func apply_status_effect(effect, duration_msec : int, potency = null, sender : C
 		get_node(status_path).apply_effect(effect, duration_msec, potency, sender)
 
 
+func apply_stat_change_status_effect(stats_and_times : String, sender : CombatActor, does_not_stack_with_id : String = ""):
+	if has_node(status_path):
+		get_node(status_path).apply_stat_change(stats_and_times, sender, does_not_stack_with_id)
+		
+
 func has_energy(energy_type : String, amount : float = 0.0) -> bool:
 	var index = energy_types.find(energy_type)
 	return index != -1 && energy_amounts[index] > amount

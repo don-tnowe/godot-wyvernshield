@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/combat_move.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 3 )
+base_multiplier = 1.0
+energy_cost = 2.0
+energy_type = "magic"
+weapon_cooldown = 0.5
+all_specials_cooldown = 0.5
+spawn_mode = 0
+trigger_reactions = [  ]
+projectile_trigger_reactions = [  ]
+stats_on_use = "2s:
+health_regen * 8.0"
+stats_on_hit = ""
