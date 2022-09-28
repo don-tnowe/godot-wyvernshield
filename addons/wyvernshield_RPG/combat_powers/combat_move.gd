@@ -1,4 +1,4 @@
-class_name SpecialPower
+class_name CombatMove
 extends Resource
 
 export var base_multiplier := 1.0
@@ -10,6 +10,8 @@ export var spawn_scene : PackedScene
 export(int, "Root Node", "Child Local Coords") var spawn_mode := 0
 export(Array, Resource) var trigger_reactions : Array setget _set_trigger_reactions
 export(Array, Resource) var projectile_trigger_reactions : Array
+export(String, MULTILINE) var stats_on_use := ""
+export(String, MULTILINE) var stats_on_hit := ""
 
 var trigger_sheet : TriggerSheet
 
@@ -22,7 +24,7 @@ func _set_trigger_reactions(v):
 
 
 func get_cost(actor : CombatActor) -> bool:
-	var result = TriggerStatic.attack_get_cost(actor, self, true, {energy_type : energy_cost})
+	var result = TriggerStatic.combat_move_get_cost(actor, self, true, {energy_type : energy_cost})
 	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_ATTACK_GET_COST, result, actor)
 	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_ATTACK_GET_COST, result, actor)
 
@@ -47,7 +49,7 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 		spawned_node.sender = actor
 		spawned_node.hit_trigger_reactions.append_array(projectile_trigger_reactions)
 
-	var result := TriggerStatic.attack(
+	var result := TriggerStatic.combat_move(
 		actor,
 		[spawned_node] if spawn_scene != null else [],
 		aim_relative,

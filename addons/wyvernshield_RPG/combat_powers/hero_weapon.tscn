@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/wyvernshield/attacks/firebomb.tres" type="Resource" id=1]
-[ext_resource path="res://assets/wyvernshield/attacks/basic/melee.tres" type="Resource" id=2]
-[ext_resource path="res://assets/wyvernshield/attacks/frailty_shards.tres" type="Resource" id=3]
+[ext_resource path="res://assets/wyvernshield/combat_moves/firebomb.tres" type="Resource" id=1]
+[ext_resource path="res://assets/wyvernshield/combat_moves/melee.tres" type="Resource" id=2]
+[ext_resource path="res://assets/wyvernshield/combat_moves/frailty_shards.tres" type="Resource" id=3]
 [ext_resource path="res://addons/wyvernshield_RPG/combat_powers/hero_weapon.gd" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=23]
@@ -19,7 +19,7 @@ fill_to = Vector2( 0, 1 )
 [node name="Weapon" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26676, 0 )
 script = ExtResource( 4 )
-basic_attack_power = ExtResource( 2 )
+basic_attack_move = ExtResource( 2 )
 special_powers = [ ExtResource( 3 ), ExtResource( 1 ) ]
 special_power_actions = [ "special_power_1", "special_power_2" ]
 

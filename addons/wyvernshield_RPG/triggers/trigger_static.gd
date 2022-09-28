@@ -72,20 +72,20 @@ static func tick(delta_time) -> Array:
 	return [delta_time]
 
 
-static func attack(actor, spawned_objects, direction_vec, attack, weapon_cooldown, power_cooldown, is_basic_attack) -> Array:
-	return [actor, spawned_objects, direction_vec, attack, weapon_cooldown, power_cooldown, is_basic_attack]
+static func combat_move(actor, spawned_objects, direction_vec, combat_move, weapon_cooldown, power_cooldown, is_basic_attack) -> Array:
+	return [actor, spawned_objects, direction_vec, combat_move, weapon_cooldown, power_cooldown, is_basic_attack]
 
 
-static func attack_get_cost(actor, attack, can_cast, cost_dict) -> Array:
-	return [actor, attack, can_cast, cost_dict]
+static func combat_move_get_cost(actor, combat_move, can_cast, cost_dict) -> Array:
+	return [actor, combat_move, can_cast, cost_dict]
 
 
-static func hit_landed(target, hit_by_attack, damage_dealt) -> Array:
-	return [target, hit_by_attack, damage_dealt]
+static func hit_landed(target, hit_by_combat_move, damage_dealt) -> Array:
+	return [target, hit_by_combat_move, damage_dealt]
 
 
-static func hit_received(target, hit_by_actor, hit_by_attack, damage_dealt) -> Array:
-	return [target, hit_by_actor, hit_by_attack, damage_dealt]
+static func hit_received(target, hit_by_actor, hit_by_combat_move, damage_dealt) -> Array:
+	return [target, hit_by_actor, hit_by_combat_move, damage_dealt]
 
 
 static func status_dot_tick(damage_dealt) -> Array:
@@ -104,8 +104,8 @@ static func status_received(sender, status, target) -> Array:
 	return [sender, status, target]
 
 
-static func npc_defeated(target, finishing_attack, damage_dealt) -> Array:
-	return [target, finishing_attack, damage_dealt]
+static func npc_defeated(target, finishing_combat_move, damage_dealt) -> Array:
+	return [target, finishing_combat_move, damage_dealt]
 
 
 static func item_pickup(item) -> Array:

@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/wyvernshield_RPG/combat_actor.gd"
 }, {
+"base": "Resource",
+"class": "CombatMove",
+"language": "GDScript",
+"path": "res://addons/wyvernshield_RPG/combat_powers/combat_move.gd"
+}, {
 "base": "Area",
 "class": "DamageArea",
 "language": "GDScript",
@@ -53,11 +58,6 @@ _global_script_classes=[ {
 "class": "SheetsDockEditor",
 "language": "GDScript",
 "path": "res://addons/resources_spreadsheet_view/typed_editors/dock_base.gd"
-}, {
-"base": "Resource",
-"class": "SpecialPower",
-"language": "GDScript",
-"path": "res://addons/wyvernshield_RPG/combat_powers/attack.gd"
 }, {
 "base": "Resource",
 "class": "StatSheet",
@@ -137,6 +137,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CellEditor": "",
 "CombatActor": "",
+"CombatMove": "",
 "DamageArea": "",
 "DamageArea2D": "",
 "Hero": "",
@@ -144,7 +145,6 @@ _global_script_class_icons={
 "Hurtbox": "",
 "Hurtbox2D": "",
 "SheetsDockEditor": "",
-"SpecialPower": "",
 "StatSheet": "",
 "StatusCarrier": "",
 "StatusCarrierView": "",

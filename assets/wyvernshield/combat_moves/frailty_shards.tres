@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/weapons/hero_special_projectile.tres" type="Resource" id=1]
-[ext_resource path="res://assets/wyvernshield/attacks/frailty_shards.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/attack.gd" type="Script" id=3]
+[ext_resource path="res://assets/wyvernshield/combat_moves/frailty_shards.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/wyvernshield_RPG/combat_powers/combat_move.gd" type="Script" id=3]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=5]
 [ext_resource path="res://assets/wyvernshield/status_effects/frail.tres" type="Resource" id=6]
 [ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=7]

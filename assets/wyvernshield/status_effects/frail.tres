@@ -17,6 +17,7 @@ resource_name = "Reduce Defense"
 script = ExtResource( 3 )
 stats_as_text = "defense * 0.99"
 subsheets = [  ]
+all_multiplier = 1.0
 
 [resource]
 script = ExtResource( 1 )

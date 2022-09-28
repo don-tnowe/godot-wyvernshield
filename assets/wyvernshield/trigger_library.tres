@@ -12,9 +12,9 @@ trigger_name = "tick"
 prop_names = "DELTA_TIME"
 
 [sub_resource type="Resource" id=3]
-resource_name = "attack"
+resource_name = "combat_move"
 script = ExtResource( 4 )
-trigger_name = "attack"
+trigger_name = "combat_move"
 prop_names = "ACTOR
 SPAWNED_OBJECTS
 DIRECTION_VEC
@@ -24,9 +24,9 @@ POWER_COOLDOWN
 IS_BASIC_ATTACK"
 
 [sub_resource type="Resource" id=19]
-resource_name = "attack_get_cost"
+resource_name = "combat_move_get_cost"
 script = ExtResource( 4 )
-trigger_name = "attack_get_cost"
+trigger_name = "combat_move_get_cost"
 prop_names = "ACTOR
 ATTACK
 CAN_CAST

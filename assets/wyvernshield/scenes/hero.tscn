@@ -234,8 +234,6 @@ icon_scene = ExtResource( 20 )
 [connection signal="health_changed" from="CombatActor" to="." method="_on_combat_health_changed"]
 [connection signal="health_depleted" from="CombatActor" to="." method="_on_combat_health_depleted"]
 [connection signal="stats_changed" from="CombatActor" to="." method="_on_combat_stats_changed"]
-[connection signal="status_effect_applied" from="CombatActor/StatusCarrier" to="HUD/Control/StatusEffects/StatusView" method="_on_status_effect_applied"]
-[connection signal="status_effect_removed" from="CombatActor/StatusCarrier" to="HUD/Control/StatusEffects/StatusView" method="_on_status_effect_removed"]
 [connection signal="body_entered" from="CombatActor/Hurtbox" to="." method="_on_Hurtbox_body_entered"]
 [connection signal="attacking_state_changed" from="CombatActor/Weapon" to="." method="_on_Weapon_attacking_state_changed"]
 [connection signal="timeout" from="CombatActor/RegenTick" to="CombatActor" method="regen_tick" binds= [ 0.25 ]]

@@ -2,7 +2,7 @@ tool
 class_name HeroWeapon
 extends Weapon
 
-export var basic_attack_power : Resource
+export var basic_attack_move : Resource
 export var basic_attack_action := "attack"
 export var aim_at_ground := true
 export var camera_path := NodePath("../../Camera")
@@ -51,7 +51,7 @@ func _process(_delta):
 
 	if Input.is_action_pressed(basic_attack_action):
 		if next_shot_sec < time:
-			use_power(basic_attack_power, Vector3(look_vec.x, 0, look_vec.z).normalized(), true)
+			use_power(basic_attack_move, Vector3(look_vec.x, 0, look_vec.z).normalized(), true)
 
 
 func _unhandled_input(event):
