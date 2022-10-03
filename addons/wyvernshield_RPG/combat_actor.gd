@@ -159,7 +159,8 @@ func hit(sender : Node, combat_move : Resource, damage : float, hit_trigger_reac
 	var hit_result = TriggerStatic.hit_landed(
 		self, 
 		hit_info[TriggerStatic.HIT_RECEIVED_HIT_BY_COMBAT_MOVE],
-		hit_info[TriggerStatic.HIT_RECEIVED_DAMAGE_DEALT]
+		hit_info[TriggerStatic.HIT_RECEIVED_DAMAGE_DEALT],
+		false
 	)
 	return hit_result
 
@@ -183,9 +184,10 @@ func _on_stats_changed():
 	emit_signal("stats_changed", stats)
 
 
-func _on_hit_target(result):
+func _on_hit_target(result, is_basic_attack = true):
+	result[TriggerStatic.HIT_LANDED_IS_BASIC_ATTACK] = is_basic_attack
 	triggers.apply_reactions(TriggerStatic.TRIGGER_HIT_LANDED, result, self)
 
 
-func _on_finish_target(result):
+func _on_finish_target(result, _is_basic_attack = true):
 	triggers.apply_reactions(TriggerStatic.TRIGGER_NPC_DEFEATED, result, self)

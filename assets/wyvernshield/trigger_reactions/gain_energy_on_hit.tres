@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/wyvernshield_RPG/triggers/trigger_reaction.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_function_sheets/basic_reactions.gd" type="Script" id=2]
+
+[resource]
+resource_name = "Magic On Hit"
+script = ExtResource( 1 )
+trigger = 3
+priority = 1000
+reaction_class = ExtResource( 2 )
+reaction_func = "gain_energy_on_hit"
+allow_duplicates = true
+editor_extra = "Extra Vars:
+0 - Type
+1 - Gain per hit
+2 - is for basic attacks"
+extra_vars = [ "magic", 0.33, true ]

@@ -101,3 +101,8 @@ func spawn_on_kill(info, attacker):
 	var new_node = extra_vars[0].instance()
 	new_node.translation = info[TriggerStatic.NPC_DEFEATED_TARGET].global_translation
 	attacker.get_viewport().add_child(new_node)
+
+
+func gain_energy_on_hit(info, attacker):
+	if info[TriggerStatic.HIT_LANDED_IS_BASIC_ATTACK] == extra_vars[2]:
+		attacker.subtract_energy(extra_vars[0], -extra_vars[1])

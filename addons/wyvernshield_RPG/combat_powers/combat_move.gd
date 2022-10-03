@@ -66,8 +66,8 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE, result, actor)
 	
 	for x in result[TriggerStatic.COMBAT_MOVE_SPAWNED_OBJECTS]:
-		x.connect("hit_target", actor, "_on_hit_target")
-		x.connect("finish_target", actor, "_on_finish_target")
+		x.connect("hit_target", actor, "_on_hit_target", [is_weapon_attack])
+		x.connect("finish_target", actor, "_on_finish_target", [is_weapon_attack])
 		if spawn_mode == 0:
 			origin_node.get_viewport().add_child(x)
 			if x is Spatial:

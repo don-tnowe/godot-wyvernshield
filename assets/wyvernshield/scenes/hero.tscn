@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/wyvernshield/scenes/hero.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_carrier_view_2D.tscn" type="PackedScene" id=19]
 [ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect_icon.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/life_orb_on_kill.tres" type="Resource" id=21]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/gain_energy_on_hit.tres" type="Resource" id=22]
 
 [sub_resource type="Resource" id=41]
 resource_name = "HeroStats"
@@ -115,7 +116,7 @@ script = ExtResource( 15 )
 stats = SubResource( 41 )
 energy_types = [ "magic" ]
 energy_amounts = [ 3.0 ]
-initial_trigger_reactions = [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), SubResource( 24 ), ExtResource( 21 ) ]
+initial_trigger_reactions = [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), SubResource( 24 ), ExtResource( 21 ), ExtResource( 22 ) ]
 
 [node name="StatusCarrier" type="Node" parent="CombatActor"]
 script = ExtResource( 16 )

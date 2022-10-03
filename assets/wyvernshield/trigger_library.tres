@@ -38,7 +38,8 @@ script = ExtResource( 4 )
 trigger_name = "hit_landed"
 prop_names = "TARGET
 HIT_BY_COMBAT_MOVE
-DAMAGE_DEALT"
+DAMAGE_DEALT
+IS_BASIC_ATTACK"
 
 [sub_resource type="Resource" id=6]
 resource_name = "hit_received"

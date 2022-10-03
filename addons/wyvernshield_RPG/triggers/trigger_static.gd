@@ -37,6 +37,7 @@ const COMBAT_MOVE_GET_COST_COST_DICT := 3
 const HIT_LANDED_TARGET := 0
 const HIT_LANDED_HIT_BY_COMBAT_MOVE := 1
 const HIT_LANDED_DAMAGE_DEALT := 2
+const HIT_LANDED_IS_BASIC_ATTACK := 3
 
 const HIT_RECEIVED_TARGET := 0
 const HIT_RECEIVED_HIT_BY_ACTOR := 1
@@ -80,8 +81,8 @@ static func combat_move_get_cost(actor, combat_move, can_cast, cost_dict) -> Arr
 	return [actor, combat_move, can_cast, cost_dict]
 
 
-static func hit_landed(target, hit_by_combat_move, damage_dealt) -> Array:
-	return [target, hit_by_combat_move, damage_dealt]
+static func hit_landed(target, hit_by_combat_move, damage_dealt, is_basic_attack) -> Array:
+	return [target, hit_by_combat_move, damage_dealt, is_basic_attack]
 
 
 static func hit_received(target, hit_by_actor, hit_by_combat_move, damage_dealt) -> Array:
