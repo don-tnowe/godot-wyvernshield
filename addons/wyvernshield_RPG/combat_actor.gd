@@ -147,6 +147,8 @@ func _process(delta):
 
 
 func hit(sender : Node, combat_move : Resource, damage : float, hit_trigger_reactions : Array = []) -> Array:
+	if !alive: return []
+
 	var hit_info = TriggerStatic.hit_received(self, sender, combat_move, damage)
 	for x in hit_trigger_reactions:
 		x.apply(hit_info, self)

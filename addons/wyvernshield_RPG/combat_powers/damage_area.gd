@@ -59,6 +59,7 @@ func destroy():
 
 func hit_target(target):
 	var result = target.combat_actor.hit(sender, created_from_move, damage, hit_trigger_reactions)
+	if result.size() == 0: return
 	if hit_stat_changes != "":
 		target.combat_actor.apply_stat_change_status_effect(hit_stat_changes, sender, filename)
 

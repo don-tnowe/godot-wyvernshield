@@ -58,6 +58,8 @@ func destroy():
 
 func hit_target(target):
 	var result = target.combat_actor.hit(sender, created_from_move, damage, hit_trigger_reactions)
+	if result.size() == 0: return
+
 	emit_signal("hit_target", result)
 
 	if !target.alive:
