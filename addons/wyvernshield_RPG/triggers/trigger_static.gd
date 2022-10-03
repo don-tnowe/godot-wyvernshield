@@ -7,8 +7,8 @@ class_name TriggerStatic
 # Triggers start
 
 const TRIGGER_TICK := 0
-const TRIGGER_ATTACK := 1
-const TRIGGER_ATTACK_GET_COST := 2
+const TRIGGER_COMBAT_MOVE := 1
+const TRIGGER_COMBAT_MOVE_GET_COST := 2
 const TRIGGER_HIT_LANDED := 3
 const TRIGGER_HIT_RECEIVED := 4
 const TRIGGER_STATUS_DOT_TICK := 5
@@ -21,26 +21,26 @@ const TRIGGER_MAX := 11
 
 const TICK_DELTA_TIME := 0
 
-const ATTACK_ACTOR := 0
-const ATTACK_SPAWNED_OBJECTS := 1
-const ATTACK_DIRECTION_VEC := 2
-const ATTACK_ATTACK := 3
-const ATTACK_WEAPON_COOLDOWN := 4
-const ATTACK_POWER_COOLDOWN := 5
-const ATTACK_IS_BASIC_ATTACK := 6
+const COMBAT_MOVE_ACTOR := 0
+const COMBAT_MOVE_SPAWNED_OBJECTS := 1
+const COMBAT_MOVE_DIRECTION_VEC := 2
+const COMBAT_MOVE_COMBAT_MOVE := 3
+const COMBAT_MOVE_WEAPON_COOLDOWN := 4
+const COMBAT_MOVE_SPECIAL_COOLDOWN := 5
+const COMBAT_MOVE_IS_BASIC_ATTACK := 6
 
-const ATTACK_GET_COST_ACTOR := 0
-const ATTACK_GET_COST_ATTACK := 1
-const ATTACK_GET_COST_CAN_CAST := 2
-const ATTACK_GET_COST_COST_DICT := 3
+const COMBAT_MOVE_GET_COST_ACTOR := 0
+const COMBAT_MOVE_GET_COST_COMBAT_MOVE := 1
+const COMBAT_MOVE_GET_COST_CAN_CAST := 2
+const COMBAT_MOVE_GET_COST_COST_DICT := 3
 
 const HIT_LANDED_TARGET := 0
-const HIT_LANDED_HIT_BY_ATTACK := 1
+const HIT_LANDED_HIT_BY_COMBAT_MOVE := 1
 const HIT_LANDED_DAMAGE_DEALT := 2
 
 const HIT_RECEIVED_TARGET := 0
 const HIT_RECEIVED_HIT_BY_ACTOR := 1
-const HIT_RECEIVED_HIT_BY_ATTACK := 2
+const HIT_RECEIVED_HIT_BY_COMBAT_MOVE := 2
 const HIT_RECEIVED_DAMAGE_DEALT := 3
 
 const STATUS_DOT_TICK_DAMAGE_DEALT := 0
@@ -72,8 +72,8 @@ static func tick(delta_time) -> Array:
 	return [delta_time]
 
 
-static func combat_move(actor, spawned_objects, direction_vec, combat_move, weapon_cooldown, power_cooldown, is_basic_attack) -> Array:
-	return [actor, spawned_objects, direction_vec, combat_move, weapon_cooldown, power_cooldown, is_basic_attack]
+static func combat_move(actor, spawned_objects, direction_vec, combat_move, weapon_cooldown, special_cooldown, is_basic_attack) -> Array:
+	return [actor, spawned_objects, direction_vec, combat_move, weapon_cooldown, special_cooldown, is_basic_attack]
 
 
 static func combat_move_get_cost(actor, combat_move, can_cast, cost_dict) -> Array:
@@ -104,8 +104,8 @@ static func status_received(sender, status, target) -> Array:
 	return [sender, status, target]
 
 
-static func npc_defeated(target, finishing_combat_move, damage_dealt) -> Array:
-	return [target, finishing_combat_move, damage_dealt]
+static func npc_defeated(target, finishing_attack, damage_dealt) -> Array:
+	return [target, finishing_attack, damage_dealt]
 
 
 static func item_pickup(item) -> Array:

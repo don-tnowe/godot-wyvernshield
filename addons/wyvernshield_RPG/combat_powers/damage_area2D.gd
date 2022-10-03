@@ -14,6 +14,7 @@ export var damage : float
 export(Array, Resource) var hit_trigger_reactions
 
 var velocity := Vector2.ZERO
+var created_from_move : CombatMove
 var sender : Spatial
 var destroy_timer : Timer
 
@@ -56,7 +57,7 @@ func destroy():
 
 
 func hit_target(target):
-	var result = target.combat_actor.hit(sender, self, damage, hit_trigger_reactions)
+	var result = target.combat_actor.hit(sender, created_from_move, damage, hit_trigger_reactions)
 	emit_signal("hit_target", result)
 
 	if !target.alive:

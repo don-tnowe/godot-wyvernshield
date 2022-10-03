@@ -146,7 +146,7 @@ func _process(delta):
 	regen_tick(delta)
 
 
-func hit(sender : Node, combat_move : Node, damage : float, hit_trigger_reactions : Array = []) -> Array:
+func hit(sender : Node, combat_move : Resource, damage : float, hit_trigger_reactions : Array = []) -> Array:
 	var hit_info = TriggerStatic.hit_received(self, sender, combat_move, damage)
 	for x in hit_trigger_reactions:
 		x.apply(hit_info, self)
@@ -156,7 +156,7 @@ func hit(sender : Node, combat_move : Node, damage : float, hit_trigger_reaction
 
 	var hit_result = TriggerStatic.hit_landed(
 		self, 
-		hit_info[TriggerStatic.HIT_RECEIVED_HIT_BY_ATTACK],
+		hit_info[TriggerStatic.HIT_RECEIVED_HIT_BY_COMBAT_MOVE],
 		hit_info[TriggerStatic.HIT_RECEIVED_DAMAGE_DEALT]
 	)
 	return hit_result

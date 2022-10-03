@@ -18,9 +18,9 @@ trigger_name = "combat_move"
 prop_names = "ACTOR
 SPAWNED_OBJECTS
 DIRECTION_VEC
-ATTACK
+COMBAT_MOVE
 WEAPON_COOLDOWN
-POWER_COOLDOWN
+SPECIAL_COOLDOWN
 IS_BASIC_ATTACK"
 
 [sub_resource type="Resource" id=19]
@@ -28,7 +28,7 @@ resource_name = "combat_move_get_cost"
 script = ExtResource( 4 )
 trigger_name = "combat_move_get_cost"
 prop_names = "ACTOR
-ATTACK
+COMBAT_MOVE
 CAN_CAST
 COST_DICT"
 
@@ -37,7 +37,7 @@ resource_name = "hit_landed"
 script = ExtResource( 4 )
 trigger_name = "hit_landed"
 prop_names = "TARGET
-HIT_BY_ATTACK
+HIT_BY_COMBAT_MOVE
 DAMAGE_DEALT"
 
 [sub_resource type="Resource" id=6]
@@ -46,7 +46,7 @@ script = ExtResource( 4 )
 trigger_name = "hit_received"
 prop_names = "TARGET
 HIT_BY_ACTOR
-HIT_BY_ATTACK
+HIT_BY_COMBAT_MOVE
 DAMAGE_DEALT"
 
 [sub_resource type="Resource" id=7]

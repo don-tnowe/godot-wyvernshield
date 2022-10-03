@@ -36,12 +36,12 @@ func use_power(power, look_vec : Vector3, is_weapon_attack : bool = false):
 	if result.size() <= 1:
 		return
 
-	next_shot_sec = time + result[TriggerStatic.ATTACK_WEAPON_COOLDOWN]
-	next_special_sec = time + result[TriggerStatic.ATTACK_POWER_COOLDOWN]
+	next_shot_sec = time + result[TriggerStatic.COMBAT_MOVE_WEAPON_COOLDOWN]
+	next_special_sec = time + result[TriggerStatic.COMBAT_MOVE_SPECIAL_COOLDOWN]
 	if next_shot_sec != time:
 		emit_signal("attacking_state_changed", true)
 
-	for x in result[TriggerStatic.ATTACK_SPAWNED_OBJECTS]:
+	for x in result[TriggerStatic.COMBAT_MOVE_SPAWNED_OBJECTS]:
 		x.connect("hit_target", self, "_on_hit_target")
 		x.connect("finish_target", self, "_on_finish_target")
 

@@ -2,17 +2,17 @@ extends TriggerReactionInstance
 
 
 func hero_weapon_attack(info, attacker):
-	if !info[TriggerStatic.ATTACK_IS_BASIC_ATTACK]:
+	if !info[TriggerStatic.COMBAT_MOVE_IS_BASIC_ATTACK]:
 		return
 
 	var stats = attacker.stats
-	info[TriggerStatic.ATTACK_WEAPON_COOLDOWN] = 1.0 / stats.get_stat("weapon_speed")
+	info[TriggerStatic.COMBAT_MOVE_WEAPON_COOLDOWN] = 1.0 / stats.get_stat("weapon_speed")
 	
 	# Apply the stats to all projectiles.
 	# (Because what if another trigger response turned them into three?)
-	for x in info[TriggerStatic.ATTACK_SPAWNED_OBJECTS]:
+	for x in info[TriggerStatic.COMBAT_MOVE_SPAWNED_OBJECTS]:
 		x.damage = stats.get_stat("weapon_damage")
-		x.velocity = stats.get_stat("weapon_shot_speed") * info[TriggerStatic.ATTACK_DIRECTION_VEC]
+		x.velocity = stats.get_stat("weapon_shot_speed") * info[TriggerStatic.COMBAT_MOVE_DIRECTION_VEC]
 		x.lifetime = stats.get_stat("weapon_shot_lifetime")
 		x.pierce_count = stats.get_stat("weapon_pierce_count")
 		x.pierce_damage_loss = stats.get_stat("weapon_pierce_damage_loss")
@@ -26,10 +26,10 @@ func hero_weapon_attack(info, attacker):
 
 func hero_special_attack(info, attacker):
 	var stats = attacker.stats
-	var dir_flat = info[TriggerStatic.ATTACK_DIRECTION_VEC]
+	var dir_flat = info[TriggerStatic.COMBAT_MOVE_DIRECTION_VEC]
 	dir_flat = Vector3(dir_flat.x, 0, dir_flat.z).normalized()
 	
-	for x in info[TriggerStatic.ATTACK_SPAWNED_OBJECTS]:
+	for x in info[TriggerStatic.COMBAT_MOVE_SPAWNED_OBJECTS]:
 		x.damage *= stats.get_stat("special_damage", 1.0)
 		x.velocity += x.initial_speed * dir_flat
 
@@ -44,7 +44,7 @@ func apply_status_on_hit(info, defender):
 
 func apply_status_on_cast(info, caster):
 	var stat_multi = (
-		info[TriggerStatic.ATTACK_POWER].stats.get_stat(extra_vars[3], 1.0)
+		info[TriggerStatic.COMBAT_MOVE_COMBAT_MOVE].stats.get_stat(extra_vars[3], 1.0)
 		if extra_vars.size() >= 4 else 1.0
 	)
 	caster.apply_status_effect(extra_vars[0], extra_vars[1], extra_vars[2] * stat_multi, caster)
@@ -81,7 +81,7 @@ func split_projectiles(info, _attacker):
 	var new_node : Node
 	var angle_step : float = -extra_vars[1] / extra_vars[0]
 	var angle_start : float = extra_vars[1] * 0.5
-	var objects_in_info = extra_vars[2] if extra_vars.size() > 2 else TriggerStatic.ATTACK_SPAWNED_OBJECTS
+	var objects_in_info = extra_vars[2] if extra_vars.size() > 2 else TriggerStatic.COMBAT_MOVE_SPAWNED_OBJECTS
 	for x in info[objects_in_info]:
 		for i in extra_vars[0] + 1:
 			new_node = x.duplicate(Node.DUPLICATE_GROUPS | Node.DUPLICATE_SIGNALS | Node.DUPLICATE_SCRIPTS)

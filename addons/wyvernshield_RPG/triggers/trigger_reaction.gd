@@ -3,8 +3,8 @@ extends Resource
 
 export(int,
 	"Tick",
-	"Attack",
-	"Attack Get Cost",
+	"Combat Move",
+	"Combat Move Get Cost",
 	"Hit Landed",
 	"Hit Received",
 	"Status Dot Tick",

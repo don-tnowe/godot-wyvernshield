@@ -25,17 +25,17 @@ func _set_trigger_reactions(v):
 
 func get_cost(actor : CombatActor) -> bool:
 	var result = TriggerStatic.combat_move_get_cost(actor, self, true, {energy_type : energy_cost})
-	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_ATTACK_GET_COST, result, actor)
-	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_ATTACK_GET_COST, result, actor)
+	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE_GET_COST, result, actor)
+	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE_GET_COST, result, actor)
 
 	return result
 
 
 func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack : bool = false) -> Array:
 	var cost_check = get_cost(actor)
-	if !cost_check[TriggerStatic.ATTACK_GET_COST_CAN_CAST]: return []
+	if !cost_check[TriggerStatic.COMBAT_MOVE_GET_COST_CAN_CAST]: return []
 
-	var cost_dict = cost_check[TriggerStatic.ATTACK_GET_COST_COST_DICT]
+	var cost_dict = cost_check[TriggerStatic.COMBAT_MOVE_GET_COST_COST_DICT]
 	for k in cost_dict:
 		if !actor.has_energy(k, cost_dict[k]):
 			return []
@@ -62,10 +62,10 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 		all_specials_cooldown,
 		is_weapon_attack
 	)
-	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_ATTACK, result, actor)
-	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_ATTACK, result, actor)
+	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE, result, actor)
+	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE, result, actor)
 	
-	for x in result[TriggerStatic.ATTACK_SPAWNED_OBJECTS]:
+	for x in result[TriggerStatic.COMBAT_MOVE_SPAWNED_OBJECTS]:
 		x.connect("hit_target", actor, "_on_hit_target")
 		x.connect("finish_target", actor, "_on_finish_target")
 		if spawn_mode == 0:
