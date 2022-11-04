@@ -82,6 +82,34 @@ They can also change stats on use and on hit. If you give it:
 
 you'll increase `health_regen` by 8 times, for 2 seconds.
 
+# "But wait!!! The feature I need is not here!!!!!!"
+
+Yeah. This is just a framework - **you can use all of this to help create your game, but it's not an "any game creator" addon.** The purpose is not to cover all mechanics that can exist in RPGs. But it can still be used to simplify some mechanics:
+
+- **Experience for levels?** Create an "Experience on NPC defeated" reaction that adds XP to the player's actor. You could even create a Trigger and apply it to any Experience gain.
+
+- **Skill trees?** Changing a HeroWeapon's moves and an Actor's stats is possible, but ways to unlock them are out of scope: Wyvernshield only covers the processes within combat, not connected systems.
+
+- **Skill experience training?** Create a trigger reaction that reacts to usage of the skill - give Experience in response. The skill level can be a stat!
+
+- **Attribute requirements for moves?** Give the move a reaction to the "Combat Move Check Cost" trigger that checks the user's stats - if not enough, `result[CAN_CAST] = false`.
+
+- **Inventory system?** Out of scope, Wyvernshield only covers combat.
+
+- **Equipment?** Create stat sheets at runtime, and add as subsheets to the main sheet, or its subsheet specifically for equipment. Reactions can be added too!
+
+- **Attribute requirements for equipment???** Stats.
+
+- **Turn-based combat?** Moves can be used directly on target actors.
+
+- **Move Cooldowns?** Use status effects/temporary stat changes that say "this move can't be used"! Or better, extend the Weapon and CombatMove classes to add a cooldown tracker!
+
+- **Enemy AI?** Varies game to game, too many to include.
+
+- **Minion/Building moves?** Moves can spawn scenes with an Actor component, doesn't need to be a Damage Area!
+
+- **Mounts? Transformations?** You could swap out the stat sheets and combat moves of the actor. Handle the visual change yourself though.
+
 #
 
 Made by Don Tnowe in 2022.
