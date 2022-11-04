@@ -7,7 +7,7 @@ All you need:
 - A **Combat Actor**, the CPU of the system.
 - A **StatusCarrier** for the actor if they can be affected by **StatusEffects**.
 - A **Hurtbox** for the actor if they take damage from **DamageArea**s.
-- A **Weapon** for the actor if they can create **DamageArea**s, or even a **HeroWeapon** to make it listen to the player!
+- A **Weapon** for the actor if their combat moves create **DamageArea**s, or even a **HeroWeapon** to make it listen to the player!
 
 # The Base Concepts
 
@@ -17,7 +17,7 @@ All you need:
 
 Held inside a **TriggerSheet** of a **CombatActor**, which maps triggers (*things that happen: actor attacks, actor takes damage...*) to reactions.
 
-Reactions of one trigger are executed in order of Priority and can change the trigger's outcome.
+Reactions of one trigger are executed in order of Priority (*highest first*) and can change the trigger's outcome.
 
 To create a **TriggerReaction**, you'll need to pass it a script extending **TriggerReactionInstance** that has a function you'll want to call.
 
@@ -51,9 +51,9 @@ Effects have Potency, which multiplies an effect's stat alterations.
 
 ## ![Combat Moves](README/title_moves.png)
 
-    The meat of the battles. Do a variety of stuff - on demand.
+    The meat of the battles. Do a variety of stuff - on command.
 
-Main purpose is to exchange hits between actors. If attacks must be spawned in the world, must be used by **Weapon**s and **HeroWeapon**s.
+Main purpose is to exchange hits between actors. You can use them directly on other actors with `use_directly()`, but if attacks must be spawned in the world, must be used by **Weapon**s with `use_power()` and **HeroWeapon**s with player input.
 
 They can spawn scenes, of which most should be **DamageArea**s that hit **Hurtbox**es (*not **CombatActor**s themselves!*). The Base Power defines damage dealt. Optionally, moves cost the actor various types of energy, or even health!
 
