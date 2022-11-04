@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/wyvernshield/scenes/hero.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/characters/hero.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://addons/wyvernshield_RPG/status_effects/status_effect_icon.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/life_orb_on_kill.tres" type="Resource" id=21]
 [ext_resource path="res://assets/wyvernshield/trigger_reactions/gain_energy_on_hit.tres" type="Resource" id=22]
+[ext_resource path="res://assets/graphics/font/font_damage.tres" type="DynamicFont" id=23]
 
 [sub_resource type="Resource" id=41]
 resource_name = "HeroStats"
@@ -257,9 +258,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 
 [node name="ResourceBars" type="Control" parent="HUD/Control"]
-margin_left = -7.0
 margin_top = -66.0
-margin_right = -7.0
 margin_bottom = -66.0
 rect_scale = Vector2( 2, 2 )
 
@@ -295,9 +294,9 @@ texture_progress = SubResource( 31 )
 fill_mode = 3
 
 [node name="StatusEffects" type="MarginContainer" parent="HUD/Control"]
-margin_left = -42.0
+margin_left = -34.0
 margin_top = -164.0
-margin_right = 26.0
+margin_right = 34.0
 margin_bottom = -116.0
 custom_constants/margin_right = 0
 custom_constants/margin_top = 0
@@ -327,6 +326,35 @@ margin_bottom = 48.0
 margin_right = 68.0
 margin_bottom = 48.0
 icon_scene = ExtResource( 20 )
+
+[node name="Label" type="Label" parent="HUD/Control"]
+margin_left = 81.0
+margin_top = -115.0
+margin_right = 486.0
+margin_bottom = -9.0
+custom_colors/font_outline_modulate = Color( 0.109804, 0.0901961, 0.792157, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "[ Rightclick ] - Frailty Shards (reduces defense)
+[ Q ] - Fire Bomb (hit burning targets
+to advance burn faster)
+[ Shift ] - Regen"
+valign = 1
+
+[node name="Label2" type="Label" parent="HUD/Control"]
+margin_left = -402.0
+margin_top = -117.0
+margin_right = -81.0
+margin_bottom = -12.0
+grow_horizontal = 0
+custom_colors/font_outline_modulate = Color( 0.980392, 0.0823529, 0.0392157, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "[ WASD ] - Move
+[ Leftclick ] - Attack
+Hit statues to restore Magic
+When you break statues, Health orbs can drop
+Statues slow on touch"
+align = 2
+valign = 1
 
 [connection signal="energy_changed" from="CombatActor" to="." method="_on_combat_energy_changed"]
 [connection signal="health_changed" from="CombatActor" to="." method="_on_combat_health_changed"]
