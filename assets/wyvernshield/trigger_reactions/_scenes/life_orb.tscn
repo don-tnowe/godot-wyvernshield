@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/wyvernshield/scenes/life_orb.gd" type="Script" id=1]
+[ext_resource path="res://assets/wyvernshield/trigger_reactions/_scenes/life_orb.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.232143, 0.589286, 0.607143, 0.757143, 0.807143 )

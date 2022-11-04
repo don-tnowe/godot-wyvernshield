@@ -18,7 +18,7 @@ All you need:
 - [assets/wyvernshield](./assets/wyvernshield/) is a base library with some resource files ready to use. It is recommended to study how these work first time, but some (*or all, if you dare*) contents can be cut.
     - [trigger_library.tres](./assets/wyvernshield/trigger_library.tres) contains commonly used triggers and their results' parameters. **Very Highly recommended to keep.**
     - [trigger_reactions](./assets/wyvernshield/trigger_reactions/) contains lots of common reactions. **Highly recommended to keep.**
-    - [scenes](./assets/wyvernshield/scenes/) puts things together. **Keep if you want to try things out or need some pre-made actors**. Contains a test scene, as well as prefabs for a hero and a stationary enemy that slows on hit. A life orb is dropped on enemy's defeat, the prefab for it is here too.
+    - [scenes](./assets/wyvernshield/scenes/) puts things together. **Keep if you want to try things out or need some pre-made actors**. Contains a test scene, as well as prefabs for a hero and a stationary enemy that slows on hit.
     - [stat_sheets](./assets/wyvernshield/stat_sheets/) contains default stats for actors in the scenes folder. **Keep only if you use the pre-made actors.**
     - [combat_moves](./assets/wyvernshield/combat_moves/) contains basic combat moves: a melee attack, a triple shot, a fire bomb and a health recovery boost. **Used by the pre-made player actor, can give a starting point for your own moves.**
     - [status_effects](./assets/wyvernshield/status_effects/) contains a Defense Reduction, a Move Speed Reduction and a Damage Over Time burn effect. **Used by pre-made actors. Are generic enough to be kept for most games. Don't forget to Make Unique if you use them, to keep extra vars.**
