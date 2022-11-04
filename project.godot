@@ -137,7 +137,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CellEditor": "",
 "CombatActor": "",
-"CombatMove": "",
+"CombatMove": "res://addons/wyvernshield_RPG/combat_powers/combat_move.svg",
 "DamageArea": "",
 "DamageArea2D": "",
 "Hero": "",
@@ -145,7 +145,7 @@ _global_script_class_icons={
 "Hurtbox": "",
 "Hurtbox2D": "",
 "SheetsDockEditor": "",
-"StatSheet": "",
+"StatSheet": "res://addons/wyvernshield_RPG/stat_sheet.svg",
 "StatusCarrier": "",
 "StatusCarrierView": "",
 "StatusCarrierView2D": "",

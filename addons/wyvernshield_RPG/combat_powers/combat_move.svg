@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="33.866684mm"
+   height="33.866665mm"
+   viewBox="0 0 33.866684 33.866665"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
@@ -47,79 +47,22 @@
        enabled="false" />
   </sodipodi:namedview>
   <defs
-     id="defs2">
-    <inkscape:path-effect
-       effect="powerstroke"
-       id="path-effect3021"
-       is_visible="true"
-       lpeversion="1"
-       offset_points="1,17.6887"
-       not_jump="false"
-       sort_points="true"
-       interpolator_type="CubicBezierJohan"
-       interpolator_beta="0.2"
-       start_linecap_type="zerowidth"
-       linejoin_type="extrp_arc"
-       miter_limit="4"
-       scale_width="1"
-       end_linecap_type="zerowidth" />
-    <inkscape:path-effect
-       effect="powerstroke"
-       id="path-effect1542"
-       is_visible="true"
-       lpeversion="1"
-       offset_points="2,1"
-       not_jump="false"
-       sort_points="true"
-       interpolator_type="CubicBezierJohan"
-       interpolator_beta="0.2"
-       start_linecap_type="zerowidth"
-       linejoin_type="extrp_arc"
-       miter_limit="4"
-       scale_width="1"
-       end_linecap_type="zerowidth" />
-    <inkscape:path-effect
-       effect="powerstroke"
-       id="path-effect1507"
-       is_visible="true"
-       lpeversion="1"
-       offset_points="3,1"
-       not_jump="false"
-       sort_points="true"
-       interpolator_type="CubicBezierJohan"
-       interpolator_beta="0.2"
-       start_linecap_type="zerowidth"
-       linejoin_type="extrp_arc"
-       miter_limit="4"
-       scale_width="1"
-       end_linecap_type="zerowidth" />
-    <inkscape:path-effect
-       effect="powerstroke"
-       id="path-effect107"
-       is_visible="true"
-       lpeversion="1"
-       offset_points="5,1"
-       not_jump="false"
-       sort_points="true"
-       interpolator_type="CubicBezierJohan"
-       interpolator_beta="0.2"
-       start_linecap_type="zerowidth"
-       linejoin_type="extrp_arc"
-       miter_limit="4"
-       scale_width="1"
-       end_linecap_type="zerowidth" />
-  </defs>
+     id="defs2" />
   <g
      inkscape:label="Шар 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-67.733339)">
     <rect
        style="fill:#666666;fill-opacity:0;fill-rule:evenodd;stroke-width:0.499999;paint-order:fill markers stroke"
        id="rect1178"
        width="33.866665"
        height="33.866665"
        x="67.73336"
-       y="0" />
+       y="0"
+       inkscape:export-filename="rect1178.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#666666;fill-opacity:0;fill-rule:evenodd;stroke-width:0.499999;paint-order:fill markers stroke"
        id="rect1204"

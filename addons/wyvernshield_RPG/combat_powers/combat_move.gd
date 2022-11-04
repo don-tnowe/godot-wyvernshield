@@ -1,5 +1,5 @@
 tool
-class_name CombatMove
+class_name CombatMove, "./combat_move.svg"
 extends Resource
 
 export var base_multiplier := 1.0

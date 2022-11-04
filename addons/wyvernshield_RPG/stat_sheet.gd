@@ -1,5 +1,5 @@
 tool
-class_name StatSheet
+class_name StatSheet, "./stat_sheet.svg"
 extends Resource
 
 export(String, MULTILINE) var stats_as_text setget _set_stats_as_text
