@@ -15,8 +15,8 @@ All you need:
 
 - [addons/wyvernshield_RPG](./addons/wyvernshield_RPG/) contains all classes required for this system to function. As of now, the plugin does not need to be activated.
 
-- [assets/wyvernshield](./assets/wyvernshield/) is a base library with some resource files ready to use. It is recommended to study how these work first time, but some contents can be cut.
-    - [trigger_library.gd](./assets/wyvernshield/trigger_library.gd) contains commonly used triggers and their results' parameters. **Very Highly recommended to keep.**
+- [assets/wyvernshield](./assets/wyvernshield/) is a base library with some resource files ready to use. It is recommended to study how these work first time, but some (*or all, if you dare*) contents can be cut.
+    - [trigger_library.tres](./assets/wyvernshield/trigger_library.tres) contains commonly used triggers and their results' parameters. **Very Highly recommended to keep.**
     - [trigger_reactions](./assets/wyvernshield/trigger_reactions/) contains lots of common reactions. **Highly recommended to keep.**
     - [scenes](./assets/wyvernshield/scenes/) puts things together. **Keep if you want to try things out or need some pre-made actors**. Contains a test scene, as well as prefabs for a hero and a stationary enemy that slows on hit. A life orb is dropped on enemy's defeat, the prefab for it is here too.
     - [stat_sheets](./assets/wyvernshield/stat_sheets/) contains default stats for actors in the scenes folder. **Keep only if you use the pre-made actors.**
