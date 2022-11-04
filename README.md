@@ -2,7 +2,12 @@
 
 A framework of a combat system. It aims to provide generic building blocks to allow games where the player (or their enemies!) can have their stats, or even combat behaviours, change dynamically.
 
-Every actor must have a **Combat Actor** node. And then's where the fun begins.
+All you need:
+
+- A **Combat Actor**, the CPU of the system.
+- A **StatusCarrier** for the actor if they can be affected by **StatusEffects**.
+- A **Hurtbox** for the actor if they take damage from **DamageArea**s.
+- A **Weapon** for the actor if they can create **DamageArea**s, or even a **HeroWeapon** to make it listen to the player!
 
 # The Base Concepts
 
@@ -48,7 +53,7 @@ Effects have Potency, which multiplies an effect's stat alterations.
 
     The meat of the battles. Do a variety of stuff - on demand.
 
-Are created by **Weapon**s and **HeroWeapon**s.
+Main purpose is to exchange hits between actors. If attacks must be spawned in the world, must be used by **Weapon**s and **HeroWeapon**s.
 
 They can spawn scenes, of which most should be **DamageArea**s that hit **Hurtbox**es (*not **CombatActor**s themselves!*). The Base Power defines damage dealt. Optionally, moves cost the actor various types of energy, or even health!
 

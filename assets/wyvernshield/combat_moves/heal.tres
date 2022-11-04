@@ -13,5 +13,5 @@ spawn_mode = 0
 stats_on_use = "2s:
 health_regen * 8.0"
 stats_on_hit = ""
-trigger_reactions = [  ]
-projectile_trigger_reactions = [  ]
+on_use_trigger_reactions = [  ]
+on_hit_trigger_reactions = [  ]

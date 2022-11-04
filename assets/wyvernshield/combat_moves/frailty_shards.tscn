@@ -22,7 +22,6 @@ script = ExtResource( 1 )
 initial_speed = 12.0
 pierce_count = 1
 lifetime = 5.0
-damage = 4.0
 
 [node name="Sprite" type="Sprite3D" parent="."]
 axis = 1

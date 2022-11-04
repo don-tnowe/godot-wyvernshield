@@ -33,5 +33,5 @@ spawn_scene = ExtResource( 2 )
 spawn_mode = 0
 stats_on_use = ""
 stats_on_hit = ""
-trigger_reactions = [ ExtResource( 1 ) ]
-projectile_trigger_reactions = [ SubResource( 7 ) ]
+on_use_trigger_reactions = [ ExtResource( 1 ) ]
+on_hit_trigger_reactions = [ SubResource( 7 ) ]

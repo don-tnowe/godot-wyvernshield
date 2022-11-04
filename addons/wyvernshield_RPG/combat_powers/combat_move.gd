@@ -7,12 +7,14 @@ export(Array, float) var energy_costs := [1.0] setget _set_energy_costs
 export(Array, String) var energy_types := ["magic"] setget _set_energy_types
 export var weapon_cooldown : float
 export var all_specials_cooldown : float
+
 export var spawn_scene : PackedScene
 export(int, "Root Node", "Child Local Coords") var spawn_mode := 0
+
 export(String, MULTILINE) var stats_on_use := ""
 export(String, MULTILINE) var stats_on_hit := ""
-export(Array, Resource) var trigger_reactions : Array setget _set_trigger_reactions
-export(Array, Resource) var projectile_trigger_reactions : Array
+export(Array, Resource) var on_use_trigger_reactions : Array setget _set_trigger_reactions
+export(Array, Resource) var on_hit_trigger_reactions : Array
 
 var trigger_sheet : TriggerSheet
 
@@ -28,9 +30,9 @@ func _set_energy_types(v):
 
 
 func _set_trigger_reactions(v):
-	trigger_reactions = v
+	on_use_trigger_reactions = v
 	trigger_sheet = TriggerSheet.new()
-	for x in trigger_reactions:
+	for x in on_use_trigger_reactions:
 		trigger_sheet.add_reaction(x)
 
 
@@ -46,27 +48,44 @@ func get_cost(actor : CombatActor) -> bool:
 	return result
 
 
-func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack : bool = false) -> Array:
-	var cost_check = get_cost(actor)
-	if !cost_check[TriggerStatic.COMBAT_MOVE_GET_COST_CAN_CAST]: return []
-
-	var cost_dict = cost_check[TriggerStatic.COMBAT_MOVE_GET_COST_COST_DICT]
-	for k in cost_dict:
-		if !actor.has_energy(k, cost_dict[k]):
-			return []
-
-		actor.subtract_energy(k, cost_dict[k])
+func use_directly(user : CombatActor, targets : Array, is_weapon_attack : bool = false) -> Array:
+	if !_use_generic(user): return []
+	var result := TriggerStatic.combat_move(
+		user,
+		[],
+		null,
+		self,
+		weapon_cooldown,
+		all_specials_cooldown,
+		is_weapon_attack
+	)
+	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE, result, user)
+	user.triggers.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE, result, user)
 	
-	if stats_on_use != "":
-		actor.apply_stat_change_status_effect(stats_on_use, actor, resource_path)
+	var hit_result
+	for x in targets:
+		if !x.alive: continue
+		hit_result = x.combat_actor.hit(user, self, base_power, on_hit_trigger_reactions)
+		if hit_result.size() == 0: continue
+		if stats_on_hit != "":
+			x.combat_actor.apply_stat_change_status_effect(stats_on_hit, user, resource_path)
+	
+		user._on_hit_target(hit_result, is_weapon_attack)
+		if !x.alive:
+			user._on_finish_target(hit_result, is_weapon_attack)
+	
+	return result
 
+
+func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack : bool = false) -> Array:
+	if !_use_generic(actor): return []
 	var spawned_node : Node
 	if spawn_scene != null:
 		spawned_node = spawn_scene.instance()
 		spawned_node.damage = base_power
 		spawned_node.sender = actor
 		spawned_node.hit_stat_changes = stats_on_hit
-		spawned_node.hit_trigger_reactions.append_array(projectile_trigger_reactions)
+		spawned_node.hit_trigger_reactions.append_array(on_hit_trigger_reactions)
 
 	var result := TriggerStatic.combat_move(
 		actor,
@@ -95,3 +114,21 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 			origin_node.add_child(x)
 	
 	return result
+
+
+func _use_generic(actor) -> bool:
+	var cost_check = get_cost(actor)
+	if !cost_check[TriggerStatic.COMBAT_MOVE_GET_COST_CAN_CAST]:
+		return false
+
+	var cost_dict = cost_check[TriggerStatic.COMBAT_MOVE_GET_COST_COST_DICT]
+	for k in cost_dict:
+		if !actor.has_energy(k, cost_dict[k]):
+			return false
+
+		actor.subtract_energy(k, cost_dict[k])
+	
+	if stats_on_use != "":
+		actor.apply_stat_change_status_effect(stats_on_use, actor, resource_path)
+
+	return true

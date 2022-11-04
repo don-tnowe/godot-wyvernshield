@@ -51,7 +51,6 @@ initial_speed = 12.0
 pierce_count = 1
 is_spectral = true
 lifetime = 5.0
-damage = 4.0
 
 [node name="Shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )

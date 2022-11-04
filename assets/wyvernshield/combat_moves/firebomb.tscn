@@ -102,7 +102,6 @@ collision_mask = 16
 script = ExtResource( 1 )
 initial_speed = 8.0
 lifetime = 8.0
-damage = 4.0
 
 [node name="RayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

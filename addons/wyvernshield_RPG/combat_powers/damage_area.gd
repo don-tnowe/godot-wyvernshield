@@ -10,7 +10,7 @@ export var pierce_count := 0
 export var pierce_damage_loss := 0.0
 export var is_spectral := false
 export var lifetime : float = 0.5 setget _set_lifetime
-export var damage : float
+export var damage := 1.0
 export(Array, Resource) var hit_trigger_reactions
 export(String, MULTILINE) var hit_stat_changes
 

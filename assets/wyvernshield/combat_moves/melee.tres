@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource( 3 )
-base_power = 2.0
+base_power = 1.0
 energy_costs = [  ]
 energy_types = [  ]
 weapon_cooldown = 0.5
@@ -15,5 +15,5 @@ spawn_scene = ExtResource( 2 )
 spawn_mode = 1
 stats_on_use = ""
 stats_on_hit = ""
-trigger_reactions = [ ExtResource( 1 ) ]
-projectile_trigger_reactions = [  ]
+on_use_trigger_reactions = [ ExtResource( 1 ) ]
+on_hit_trigger_reactions = [  ]
