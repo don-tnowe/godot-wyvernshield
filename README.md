@@ -1,6 +1,6 @@
 # Wyvernshield
 
-A framework of a combat system. It aims to provide generic building blocks to allow games where the player (or their enemies!) can have their stats, or even combat behaviours, change dynamically.
+A framework for combat systems. It aims to provide generic building blocks to create games where the player (or their enemies!) can have their stats, or even combat behaviours, change dynamically.
 
 All you need:
 
@@ -9,25 +9,41 @@ All you need:
 - A **Hurtbox** for the actor if they take damage from **DamageArea**s.
 - A **Weapon** for the actor if their combat moves create **DamageArea**s, or even a **HeroWeapon** to make it listen to the player!
 
+# Package contents
+
+    Or, "what do i need from here?!?!"
+
+- [addons/wyvernshield_RPG](./addons/wyvernshield_RPG/) contains all classes required for this system to function. As of now, the plugin does not need to be activated.
+
+- [assets/wyvernshield](./assets/wyvernshield/) is a base library with some resource files ready to use. It is recommended to study how these work first time, but some contents can be cut.
+    - [trigger_library.gd](./assets/wyvernshield/trigger_library.gd) contains commonly used triggers and their results' parameters. **Very Highly recommended to keep.**
+    - [trigger_reactions](./assets/wyvernshield/trigger_reactions/) contains lots of common reactions. **Highly recommended to keep.**
+    - [scenes](./assets/wyvernshield/scenes/) puts things together. **Keep if you want to try things out or need some pre-made actors**. Contains a test scene, as well as prefabs for a hero and a stationary enemy that slows on hit. A life orb is dropped on enemy's defeat, the prefab for it is here too.
+    - [stat_sheets](./assets/wyvernshield/stat_sheets/) contains default stats for actors in the scenes folder. **Keep only if you use the pre-made actors.**
+    - [combat_moves](./assets/wyvernshield/combat_moves/) contains basic combat moves: a melee attack, a triple shot, a fire bomb and a health recovery boost. **Used by the pre-made player actor, can give a starting point for your own moves.**
+    - [status_effects](./assets/wyvernshield/status_effects/) contains a Defense Reduction, a Move Speed Reduction and a Damage Over Time burn effect. **Used by pre-made actors. Are generic enough to be kept for most games. Don't forget to Make Unique if you use them, to keep extra vars.**
+
+- [assets/graphics](./assets/graphics/) has the font used by damage numbers and the pre-made player actor HUD. License included. Folder also contains 2 actor sprites and a tiling texture.
+
 # The Base Concepts
 
 ## ![Trigger Reactions](README/title_trigger.png)
 
-    When a thing happens, the reaction reacts to it.
+    When a thing happens, the reactions react to it.
 
 Held inside a **TriggerSheet** of a **CombatActor**, which maps triggers (*things that happen: actor attacks, actor takes damage...*) to reactions.
 
 Reactions of one trigger are executed in order of Priority (*highest first*) and can change the trigger's outcome.
 
-To create a **TriggerReaction**, you'll need to pass it a script extending **TriggerReactionInstance** that has a function you'll want to call.
-
-Extra Vars can be set to be call the function with different parameters - make it use the instance's `extra_vars`. This is how the Status Effect on Hit reaction changes an effect's strength!
-
-Manage trigger names and properties in your **TriggerLibrary** instance, located in [assets/wyvernshield/trigger_library.tres](assets/wyvernshield/trigger_library.tres). **Edit in-engine, then click Force Update.**
-
-Create Trigger Results for a Trigger Sheet using fuctions generated inside **TriggerStatic**, then pass into the actor's `triggers.apply_reactions()`. Then do whatever with the result!
+Create a Trigger Results array for a Trigger Sheet using fuctions generated inside **TriggerStatic**, then pass into the actor's `triggers.apply_reactions()`. Then do whatever with the result!
 
 The **TriggerSheet** has functions to add or remove reactions at runtime.
+
+To create your own **TriggerReaction**, you'll need to pass it a script extending **TriggerReactionInstance** that has a function you'll want to call.
+
+Extra Vars can be set to create the instance with different parameters - make it use the instance's `extra_vars` array. This is how the Status Effect on Hit reaction defines which effect gets applied and what its duration and strength is!
+
+Manage trigger names and properties in your **TriggerLibrary** instance, located in [assets/wyvernshield/trigger_library.tres](assets/wyvernshield/trigger_library.tres). **Edit in-engine, then click Force Update.**
 
 ## ![Stat Sheets](README/title_stat.png)
 
@@ -37,15 +53,17 @@ Maps string names to numeric values. The values of each stat are added up from a
 
 - `stat_name + 10` or `stat_name = 10`: add to the stat total.
 - `stat_name - 10`: subtract from the stat total.
-- `stat_name x 10` or `stat_name * 10`: multiply the stat total. (*stacks multiplicatively: x2 and x3 make x6*) 
+- `stat_name x 10` or `stat_name * 10`: multiply the stat total. (*stacks multiplicatively: x2 and x3 make x6*)
+
+The **StatSheet** has functions to add or remove sub-sheets at runtime.
 
 All stat contributions of a sheet can be multiplied. Don't forget to duplicate the instance!
 
 ## ![Status Effects](README/title_status.png)
 
-    Add statsheets and reactions. Removes the after some time.
+    Adds statsheets and reactions. Removes them after some time.
 
-Are applied to **CombatActor**s, which pass them to their **StatusCarrier**s to keep.
+Are applied to **CombatActor**s, which pass them to their **StatusCarrier**s to keep and process.
 
 Effects have Potency, which multiplies an effect's stat alterations.
 
@@ -63,3 +81,13 @@ They can also change stats on use and on hit. If you give it:
     health_regen * 8.0
 
 you'll increase `health_regen` by 8 times, for 2 seconds.
+
+#
+
+Made by Don Tnowe in 2022.
+
+https://redbladegames.netlify.app
+
+https://twitter.com/don_tnowe
+
+Copying and Modiication is allowed in accordance to the MIT license, full text is included.
