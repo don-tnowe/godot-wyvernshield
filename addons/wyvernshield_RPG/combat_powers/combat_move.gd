@@ -2,7 +2,7 @@ tool
 class_name CombatMove, "./combat_move.svg"
 extends Resource
 
-export var base_multiplier := 1.0
+export var base_power := 1.0
 export(Array, float) var energy_costs := [1.0] setget _set_energy_costs
 export(Array, String) var energy_types := ["magic"] setget _set_energy_types
 export var weapon_cooldown : float
@@ -63,7 +63,7 @@ func use(actor : CombatActor, aim_relative, origin_node : Node, is_weapon_attack
 	var spawned_node : Node
 	if spawn_scene != null:
 		spawned_node = spawn_scene.instance()
-		spawned_node.damage = base_multiplier
+		spawned_node.damage = base_power
 		spawned_node.sender = actor
 		spawned_node.hit_stat_changes = stats_on_hit
 		spawned_node.hit_trigger_reactions.append_array(projectile_trigger_reactions)

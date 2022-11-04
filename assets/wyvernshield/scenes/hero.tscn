@@ -337,7 +337,7 @@ custom_fonts/font = ExtResource( 23 )
 text = "[ Rightclick ] - Frailty Shards (reduces defense)
 [ Q ] - Fire Bomb (hit burning targets
 to advance burn faster)
-[ Shift ] - Regen"
+[ E ] - Regen"
 valign = 1
 
 [node name="Label2" type="Label" parent="HUD/Control"]

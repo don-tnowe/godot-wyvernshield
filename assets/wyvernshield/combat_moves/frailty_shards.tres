@@ -36,7 +36,7 @@ extra_vars = [ 2, 30.0 ]
 
 [resource]
 script = ExtResource( 3 )
-base_multiplier = 1.5
+base_power = 1.5
 energy_costs = [ 1.0 ]
 energy_types = [ "magic" ]
 weapon_cooldown = 0.5

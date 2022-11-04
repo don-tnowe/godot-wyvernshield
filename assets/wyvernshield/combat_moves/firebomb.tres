@@ -24,7 +24,7 @@ extra_vars = [ ExtResource( 4 ), 10.0, 0.25, "special_damage" ]
 
 [resource]
 script = ExtResource( 3 )
-base_multiplier = 2.0
+base_power = 2.0
 energy_costs = [ 2.0 ]
 energy_types = [ "magic" ]
 weapon_cooldown = 0.5

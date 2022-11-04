@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource( 3 )
-base_multiplier = 2.0
+base_power = 2.0
 energy_costs = [  ]
 energy_types = [  ]
 weapon_cooldown = 0.5
