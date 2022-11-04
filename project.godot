@@ -94,12 +94,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/resources_spreadsheet_view/editor_icon_button.gd"
 }, {
-"base": "Reference",
+"base": "Control",
 "class": "ThemeStylebox",
 "language": "GDScript",
 "path": "res://addons/resources_spreadsheet_view/editor_stylebox_overrider.gd"
 }, {
-"base": "Reference",
+"base": "Resource",
 "class": "TriggerLibrary",
 "language": "GDScript",
 "path": "res://addons/wyvernshield_RPG/triggers/trigger_library.gd"
@@ -164,7 +164,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ARPG"
+config/name="Addon: ARPG combat"
 run/main_scene="res://assets/wyvernshield/scenes/main.tscn"
 config/icon="res://icon.png"
 
@@ -172,10 +172,6 @@ config/icon="res://icon.png"
 
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PoolStringArray(  )
 
 [gui]
 

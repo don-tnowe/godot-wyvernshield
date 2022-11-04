@@ -1,9 +1,10 @@
+tool
 class_name CombatMove
 extends Resource
 
 export var base_multiplier := 1.0
-export var energy_cost := 1.0
-export var energy_type := "magic"
+export(Array, float) var energy_costs := [1.0] setget _set_energy_costs
+export(Array, String) var energy_types := ["magic"] setget _set_energy_types
 export var weapon_cooldown : float
 export var all_specials_cooldown : float
 export var spawn_scene : PackedScene
@@ -16,6 +17,16 @@ export(Array, Resource) var projectile_trigger_reactions : Array
 var trigger_sheet : TriggerSheet
 
 
+func _set_energy_costs(v):
+	energy_costs = v
+	energy_types.resize(v.size())
+
+
+func _set_energy_types(v):
+	energy_types = v
+	energy_costs.resize(v.size())
+
+
 func _set_trigger_reactions(v):
 	trigger_reactions = v
 	trigger_sheet = TriggerSheet.new()
@@ -24,7 +35,11 @@ func _set_trigger_reactions(v):
 
 
 func get_cost(actor : CombatActor) -> bool:
-	var result = TriggerStatic.combat_move_get_cost(actor, self, true, {energy_type : energy_cost})
+	var dict : Dictionary
+	for i in energy_types.size():
+		dict[energy_types[i]] = energy_costs[i]
+
+	var result = TriggerStatic.combat_move_get_cost(actor, self, true, dict)
 	actor.triggers.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE_GET_COST, result, actor)
 	trigger_sheet.apply_reactions(TriggerStatic.TRIGGER_COMBAT_MOVE_GET_COST, result, actor)
 

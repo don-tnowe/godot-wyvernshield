@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource( 3 )
 base_multiplier = 1.0
-energy_cost = 2.0
-energy_type = "magic"
+energy_costs = [ 1.0 ]
+energy_types = [ "magic" ]
 weapon_cooldown = 0.5
 all_specials_cooldown = 0.5
 spawn_mode = 0
