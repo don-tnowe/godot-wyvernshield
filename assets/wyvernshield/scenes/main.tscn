@@ -1,20 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://assets/graphics/environment/brick.png" type="Texture" id=1]
 [ext_resource path="res://assets/wyvernshield/scenes/hero.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/wyvernshield/scenes/combat_npc.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 5.1133, 0.101602, 5.12533 )
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.340909, 1 )
-colors = PoolColorArray( 0.183594, 0.183594, 0.183594, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture2D" id=32]
-flags = 3
-gradient = SubResource( 2 )
-fill = 1
-fill_from = Vector2( 0.47905, 0.501397 )
 
 [sub_resource type="BoxShape" id=26]
 extents = Vector3( 1.68046, 0.101602, 2.57596 )
@@ -49,7 +40,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0980841, 0 )
 axis = 1
 transparent = false
-texture = SubResource( 32 )
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1024, 1024 )
 
@@ -61,7 +52,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0980841, 0 )
 axis = 1
 transparent = false
-texture = SubResource( 32 )
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1024, 1024 )
 
@@ -73,7 +64,7 @@ shape = SubResource( 26 )
 transform = Transform( 1, 8.88177e-16, -3.55271e-15, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.108323, 0.563225 )
 axis = 1
 transparent = false
-texture = SubResource( 32 )
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 337.2, 402.2 )
 
@@ -82,10 +73,10 @@ transform = Transform( 8.74228e-08, 0.433659, -0.901077, 0, 0.901077, 0.433659, 
 shape = SubResource( 26 )
 
 [node name="sprite_3d2" type="Sprite3D" parent="level/static_body/collision_shape4"]
-transform = Transform( 1, 7.10543e-15, -2.13163e-14, -1.06581e-14, 1, 2.98023e-08, 0, -2.98023e-08, 1, 2.38419e-07, 0.112914, 0.557571 )
+transform = Transform( 1, 1.06581e-14, -2.84217e-14, -1.42109e-14, 1, 2.98023e-08, 0, -2.98023e-08, 1, 2.38419e-07, 0.112914, 0.557571 )
 axis = 1
 transparent = false
-texture = SubResource( 32 )
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 337.2, 402.2 )
 

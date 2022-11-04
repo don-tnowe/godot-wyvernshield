@@ -28,6 +28,15 @@ func _process_movement_input(delta):
 		"ui_up",
 		"ui_down"
 	)
+	if input_vec == Vector2.ZERO:
+		$"Anim".play("idle")
+
+	else:
+		$"Anim".play("run")
+
+	if input_vec.x != 0:
+		$"Sprite".flip_h = input_vec.x > 0
+
 	var horizontal_velocity = move_max_speed * (0.5 if is_attacking else 1.0) * input_vec
 	velocity = Vector3(
 		horizontal_velocity.x, 
