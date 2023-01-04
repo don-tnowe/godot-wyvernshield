@@ -2,6 +2,8 @@
 
 A framework for combat systems. It aims to provide generic building blocks to create games where the player (or their enemies!) can have their stats, or even combat behaviours, change dynamically.
 
+![](icon.png)
+
 All you need:
 
 - A **Combat Actor**, the CPU of the system.

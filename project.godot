@@ -136,7 +136,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CellEditor": "",
-"CombatActor": "",
+"CombatActor": "res://addons/wyvernshield_RPG/combat_actor.svg",
 "CombatMove": "res://addons/wyvernshield_RPG/combat_powers/combat_move.svg",
 "DamageArea": "",
 "DamageArea2D": "",

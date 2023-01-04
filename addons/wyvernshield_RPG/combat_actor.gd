@@ -1,5 +1,5 @@
 tool
-class_name CombatActor
+class_name CombatActor, "./combat_actor.svg"
 extends Node
 
 signal health_changed(new_value, old_value)
